@@ -1,28 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const languageBtn = document.getElementById("languageBtn");
 
-    /* =========================
-       LANGUAGE
-    ========================= */
-
-    const languageBtn =
-        document.getElementById("languageBtn");
-
-
-    let currentLanguage = "ar";
+    let currentLanguage =
+        localStorage.getItem("haseefLanguage") || "ar";
 
 
     function updateLanguage() {
 
-
-        document.documentElement.lang =
-            currentLanguage;
+        // اتجاه الموقع
+        document.documentElement.lang = currentLanguage;
 
         document.documentElement.dir =
-            currentLanguage === "ar"
-                ? "rtl"
-                : "ltr";
-
+            currentLanguage === "ar" ? "rtl" : "ltr";
 
         document.body.classList.toggle(
             "en",
@@ -30,102 +20,131 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
+        // تغيير النصوص
         document.querySelectorAll(
-            "[data-ar][data-en]"
+            "[data-ar], [data-en]"
         ).forEach(function (element) {
 
-            element.textContent =
+            const text =
                 element.getAttribute(
                     "data-" + currentLanguage
                 );
 
+            if (text !== null) {
+                element.textContent = text;
+            }
+
         });
 
 
-        languageBtn.textContent =
-            currentLanguage === "ar"
-                ? "EN"
-                : "AR";
+        // تغيير زر اللغة
+        if (languageBtn) {
+
+            languageBtn.textContent =
+                currentLanguage === "ar"
+                    ? "EN"
+                    : "AR";
+
+        }
+
+
+        // حفظ اللغة
+        localStorage.setItem(
+            "haseefLanguage",
+            currentLanguage
+        );
 
     }
 
 
-    languageBtn.addEventListener(
-        "click",
-        function () {
+    // الضغط على زر اللغة
+    if (languageBtn) {
 
-            currentLanguage =
-                currentLanguage === "ar"
-                    ? "en"
-                    : "ar";
+        languageBtn.addEventListener(
+            "click",
+            function () {
 
-            updateLanguage();
+                currentLanguage =
+                    currentLanguage === "ar"
+                        ? "en"
+                        : "ar";
 
-        }
-    );
+                updateLanguage();
+
+            }
+        );
+
+    }
 
 
-    /* =========================
-       CONTACT FORM
-    ========================= */
+    // =========================
+    // CONTACT FORM
+    // =========================
 
     const form =
         document.getElementById("contactForm");
 
-
-    const message =
+    const formMessage =
         document.getElementById("formMessage");
 
 
-    form.addEventListener(
-        "submit",
-        function (event) {
+    if (form) {
 
-            event.preventDefault();
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                const name =
+                    document.getElementById("name")?.value.trim();
+
+                const email =
+                    document.getElementById("email")?.value.trim();
 
 
-            const name =
-                document.getElementById("name").value;
+                if (!name || !email) {
+
+                    if (formMessage) {
+
+                        formMessage.textContent =
+                            currentLanguage === "ar"
+                                ? "يرجى تعبئة الاسم والبريد الإلكتروني."
+                                : "Please enter your name and email.";
+
+                        formMessage.style.color =
+                            "#b42318";
+
+                    }
+
+                    return;
+
+                }
 
 
-            const email =
-                document.getElementById("email").value;
+                if (formMessage) {
 
+                    formMessage.textContent =
+                        currentLanguage === "ar"
+                            ? "تم استلام طلبك بنجاح."
+                            : "Your request has been received.";
 
-            if (!name || !email) {
+                    formMessage.style.color =
+                        "#087443";
 
-                message.textContent =
-                    currentLanguage === "ar"
-                        ? "يرجى تعبئة الاسم والبريد الإلكتروني."
-                        : "Please enter your name and email.";
+                }
 
-                message.style.color =
-                    "#b42318";
-
-                return;
+                form.reset();
 
             }
+        );
+
+    }
 
 
-            message.textContent =
-                currentLanguage === "ar"
-                    ? "تم استلام طلبك بنجاح. سيتواصل معك فريق حصيف قريبًا."
-                    : "Your request has been received. The HASEEF team will contact you shortly.";
-
-
-            message.style.color =
-                "#087443";
-
-
-            form.reset();
-
-        }
-    );
-
-
-    /* =========================
-       SCROLL NAVBAR
-    ========================= */
+    // =========================
+    // NAVBAR SHADOW
+    // =========================
 
     const navbar =
         document.querySelector(".navbar");
@@ -134,6 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener(
         "scroll",
         function () {
+
+            if (!navbar) return;
+
 
             if (window.scrollY > 30) {
 
@@ -151,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+    // تشغيل اللغة عند فتح الموقع
     updateLanguage();
 
 });
