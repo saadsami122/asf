@@ -1,27 +1,42 @@
 :root {
 
     --green: #082d26;
-    --dark: #041b17;
+
+    --dark-green: #041b17;
+
     --gold: #c4a66a;
 
     --cream: #f3f0e8;
+
     --white: #ffffff;
+
     --black: #111614;
+
     --gray: #707875;
+
     --line: #d9ddd8;
 
     --container: 1220px;
 }
 
+
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
 
+
 html {
+
     scroll-behavior: smooth;
+
 }
+
 
 body {
 
@@ -34,65 +49,89 @@ body {
         sans-serif;
 
     line-height: 1.7;
+
 }
+
 
 body.en {
 
-    font-family: "Inter", sans-serif;
+    font-family:
+        "Inter",
+        sans-serif;
 
     direction: ltr;
+
 }
 
+
 a {
+
     color: inherit;
+
     text-decoration: none;
+
 }
+
 
 button,
 input,
 textarea,
 select {
+
     font: inherit;
+
 }
+
 
 .container {
 
     width: min(90%, var(--container));
 
     margin: auto;
+
 }
 
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
 
     position: fixed;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
 
     z-index: 1000;
 
-    background: rgba(243,240,232,.94);
+    background:
+        rgba(243,240,232,.94);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(18px);
 
-    border-bottom: 1px solid rgba(0,0,0,.06);
+    border-bottom:
+        1px solid rgba(0,0,0,.06);
+
 }
+
 
 .nav-container {
 
-    min-height: 92px;
+    min-height: 90px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
+
 }
+
 
 .logo {
 
@@ -101,40 +140,46 @@ select {
     align-items: center;
 
     gap: 13px;
+
 }
+
 
 .logo-ar {
 
-    font-size: 35px;
+    font-size: 34px;
 
     line-height: 1;
 
     font-weight: 700;
 
     color: var(--green);
+
 }
 
-.logo-line {
+
+.logo-divider {
 
     width: 1px;
 
     height: 28px;
 
     background: var(--gold);
+
 }
+
 
 .logo-en {
 
     font-family: "Inter";
 
-    font-size: 12px;
+    font-size: 11px;
 
     letter-spacing: 4px;
 
     color: var(--gold);
 
-    font-weight: 600;
 }
+
 
 .nav-links {
 
@@ -142,55 +187,69 @@ select {
 
     align-items: center;
 
-    gap: 30px;
+    gap: 28px;
+
 }
+
 
 .nav-links a {
 
     font-size: 13px;
 
     transition: .25s;
+
 }
+
 
 .nav-links a:hover {
+
     color: var(--gold);
+
 }
 
-.nav-right {
+
+.nav-actions {
 
     display: flex;
 
     align-items: center;
 
     gap: 12px;
+
 }
+
 
 #languageBtn {
 
-    border: 1px solid var(--green);
+    padding: 8px 12px;
 
     background: transparent;
 
+    border: 1px solid var(--green);
+
     color: var(--green);
 
-    padding: 8px 12px;
-
     cursor: pointer;
+
 }
 
-.nav-button {
+
+.nav-cta {
+
+    padding: 11px 18px;
 
     background: var(--green);
 
     color: white;
 
-    padding: 11px 18px;
-
     font-size: 12px;
+
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
 
@@ -202,14 +261,14 @@ select {
 
     align-items: center;
 
-    overflow: hidden;
-
     color: white;
 
-    background: var(--green);
+    overflow: hidden;
+
 }
 
-.hero-background {
+
+.hero-image {
 
     position: absolute;
 
@@ -221,7 +280,9 @@ select {
     background-size: cover;
 
     background-position: center;
+
 }
+
 
 .hero-overlay {
 
@@ -233,151 +294,185 @@ select {
         linear-gradient(
             90deg,
             rgba(3,25,21,.97),
-            rgba(3,25,21,.78),
-            rgba(3,25,21,.35)
+            rgba(3,25,21,.75),
+            rgba(3,25,21,.30)
         );
+
 }
 
-.hero-container {
+
+.hero-content {
 
     position: relative;
 
     z-index: 2;
 
     padding-top: 110px;
+
 }
 
-.hero-logo {
+
+.hero-brand {
 
     display: flex;
 
     align-items: baseline;
 
-    gap: 26px;
+    gap: 25px;
 
     margin-bottom: 30px;
+
 }
 
-.hero-logo-ar {
+
+.hero-ar {
 
     font-size:
-        clamp(70px, 10vw, 135px);
+        clamp(70px,10vw,135px);
 
     line-height: .8;
 
     font-weight: 700;
 
-    letter-spacing: -5px;
 }
 
-.hero-logo-en {
+
+.hero-en {
 
     font-family: "Inter";
 
+    color: var(--gold);
+
     font-size:
-        clamp(24px, 3vw, 43px);
+        clamp(23px,3vw,43px);
 
     letter-spacing: 8px;
 
-    color: var(--gold);
-
-    font-weight: 600;
 }
 
-.hero-tag {
+
+.hero-label {
 
     color: var(--gold);
 
     font-family: "Inter";
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 2px;
 
     margin-bottom: 20px;
+
 }
+
+
+.hero-label span {
+
+    margin: 0 7px;
+
+}
+
 
 .hero h1 {
 
     max-width: 1000px;
 
     font-size:
-        clamp(45px, 6vw, 78px);
+        clamp(44px,6vw,78px);
 
-    line-height: 1.04;
+    line-height: 1.05;
 
     font-weight: 500;
 
-    letter-spacing: -2px;
 }
+
 
 .hero h1 span {
 
     display: block;
 
     color: #d3ba83;
+
 }
+
 
 .hero p {
 
     max-width: 720px;
 
-    color: rgba(255,255,255,.7);
+    color:
+        rgba(255,255,255,.72);
 
     font-size: 17px;
 
     margin-top: 30px;
+
 }
 
-.hero-actions {
+
+.hero-buttons {
 
     display: flex;
 
     gap: 13px;
 
     margin-top: 38px;
+
 }
 
-.button {
+
+.btn {
 
     padding: 15px 25px;
 
     font-size: 13px;
 
     transition: .25s;
+
 }
 
-.button-primary {
+
+.btn-primary {
 
     background: white;
 
     color: var(--green);
+
 }
 
-.button-primary:hover {
+
+.btn-primary:hover {
 
     background: var(--gold);
 
     color: white;
 
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
+
 }
 
-.button-outline {
 
-    border: 1px solid rgba(255,255,255,.5);
+.btn-secondary {
+
+    border:
+        1px solid rgba(255,255,255,.5);
 
     color: white;
+
 }
 
-.button-outline:hover {
+
+.btn-secondary:hover {
 
     background: white;
 
     color: var(--green);
+
 }
 
-.hero-bottom {
+
+.hero-meta {
 
     display: flex;
 
@@ -385,22 +480,28 @@ select {
 
     margin-top: 65px;
 
-    color: rgba(255,255,255,.4);
+    color:
+        rgba(255,255,255,.42);
 
     font-family: "Inter";
 
     font-size: 9px;
 
     letter-spacing: 2px;
+
 }
 
 
-/* GENERAL */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
 
     padding: 130px 0;
+
 }
+
 
 .section-label {
 
@@ -414,71 +515,91 @@ select {
 
     font-family: "Inter";
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 1.5px;
+
 }
+
 
 .section-label span {
+
     color: var(--gold);
-}
 
-.section-label strong {
-    font-weight: 500;
 }
 
 
-/* ABOUT */
+/* =========================
+   ABOUT
+========================= */
 
 .about {
+
     background: white;
+
 }
+
 
 .about-grid {
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 110px;
+
 }
 
-.about h2 {
+
+.about-title h2 {
 
     font-size:
-        clamp(45px, 5vw, 72px);
+        clamp(45px,5vw,72px);
 
     line-height: 1.05;
 
     font-weight: 500;
+
 }
 
-.about h2 em {
+
+.about-title em {
 
     display: block;
 
     color: var(--green);
 
     font-style: normal;
+
 }
 
-.about-copy {
+
+.about-text {
 
     color: var(--gray);
 
     font-size: 16px;
+
 }
 
-.about-copy p {
+
+.about-text p {
+
     margin-bottom: 25px;
+
 }
+
 
 .stats {
 
     margin-top: 45px;
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid var(--line);
+
 }
+
 
 .stats div {
 
@@ -488,8 +609,11 @@ select {
 
     padding: 17px 0;
 
-    border-bottom: 1px solid var(--line);
+    border-bottom:
+        1px solid var(--line);
+
 }
+
 
 .stats strong {
 
@@ -498,7 +622,9 @@ select {
     font-family: "Inter";
 
     font-size: 12px;
+
 }
+
 
 .stats span {
 
@@ -507,25 +633,30 @@ select {
     font-family: "Inter";
 
     font-size: 13px;
+
 }
 
 
-/* VISUAL */
+/* =========================
+   IMAGE
+========================= */
 
-.visual-section {
-
-    height: 620px;
+.image-section {
 
     position: relative;
+
+    height: 620px;
 
     display: flex;
 
     align-items: center;
 
     overflow: hidden;
+
 }
 
-.visual-image {
+
+.image-section-bg {
 
     position: absolute;
 
@@ -537,9 +668,11 @@ select {
     background-size: cover;
 
     background-position: center;
+
 }
 
-.visual-overlay {
+
+.image-section-overlay {
 
     position: absolute;
 
@@ -548,21 +681,25 @@ select {
     background:
         linear-gradient(
             90deg,
-            rgba(3,25,21,.93),
+            rgba(3,25,21,.94),
             rgba(3,25,21,.25)
         );
+
 }
 
-.visual-content {
+
+.image-section-content {
 
     position: relative;
 
     z-index: 2;
 
     color: white;
+
 }
 
-.visual-content span {
+
+.image-section-content span {
 
     color: var(--gold);
 
@@ -571,30 +708,31 @@ select {
     font-size: 10px;
 
     letter-spacing: 2px;
+
 }
 
-.visual-content h2 {
+
+.image-section-content h2 {
 
     font-family: "Inter";
 
     font-size:
-        clamp(50px, 7vw, 95px);
+        clamp(50px,7vw,95px);
 
     line-height: .95;
 
     font-weight: 500;
 
     margin-top: 25px;
+
 }
 
 
-/* SERVICES */
+/* =========================
+   SERVICES
+========================= */
 
-.services {
-    background: var(--cream);
-}
-
-.services-header {
+.services-intro {
 
     display: flex;
 
@@ -603,43 +741,57 @@ select {
     gap: 80px;
 
     margin-bottom: 60px;
+
 }
 
-.services-header h2 {
+
+.services-intro h2 {
 
     font-size:
-        clamp(43px, 5vw, 68px);
+        clamp(43px,5vw,68px);
 
     line-height: 1.05;
 
     font-weight: 500;
+
 }
 
-.services-header h2 span {
+
+.services-intro h2 span {
+
     color: var(--green);
+
+    display: block;
+
 }
 
-.services-header p {
+
+.services-intro p {
 
     max-width: 410px;
 
     color: var(--gray);
+
 }
+
 
 .services-grid {
 
     display: grid;
 
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap: 1px;
 
     background: var(--line);
 
     border: 1px solid var(--line);
+
 }
 
-.service {
+
+.service-card {
 
     position: relative;
 
@@ -650,36 +802,45 @@ select {
     background: var(--cream);
 
     transition: .3s;
+
 }
 
-.service:hover {
+
+.service-card:hover {
 
     color: white;
 
     background: var(--green);
 
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
+
 }
 
-.service small {
+
+.service-card small {
 
     color: var(--gold);
 
     font-family: "Inter";
 
     font-size: 10px;
+
 }
 
-.service h3 {
+
+.service-card h3 {
 
     font-family: "Inter";
 
     font-size: 23px;
 
     margin-top: 55px;
+
 }
 
-.service p {
+
+.service-card p {
 
     max-width: 300px;
 
@@ -690,13 +851,19 @@ select {
     font-size: 12px;
 
     margin-top: 15px;
+
 }
 
-.service:hover p {
-    color: rgba(255,255,255,.65);
+
+.service-card:hover p {
+
+    color:
+        rgba(255,255,255,.65);
+
 }
 
-.service-arrow {
+
+.service-card > span {
 
     position: absolute;
 
@@ -707,10 +874,13 @@ select {
     color: var(--gold);
 
     font-size: 21px;
+
 }
 
 
-/* MARKETS */
+/* =========================
+   MARKETS
+========================= */
 
 .markets {
 
@@ -719,32 +889,42 @@ select {
     color: white;
 
     background:
+
         linear-gradient(
             120deg,
             rgba(3,27,22,.97),
             rgba(8,51,43,.85)
         ),
+
         url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=90");
 
     background-size: cover;
 
     background-position: center;
+
 }
 
+
 .light {
+
     color: white;
+
 }
+
 
 .markets-grid {
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 100px;
 
     align-items: center;
+
 }
+
 
 .gold-label {
 
@@ -759,43 +939,55 @@ select {
     letter-spacing: 2px;
 
     margin-bottom: 22px;
+
 }
+
 
 .markets h2 {
 
     font-size:
-        clamp(45px, 5vw, 72px);
+        clamp(45px,5vw,72px);
 
     line-height: 1.05;
 
     font-weight: 500;
+
 }
+
 
 .markets h2 span {
 
     display: block;
 
     color: var(--gold);
+
 }
+
 
 .markets-grid p {
 
-    color: rgba(255,255,255,.65);
-
     max-width: 480px;
+
+    color:
+        rgba(255,255,255,.65);
+
 }
+
 
 .market-list {
 
     display: grid;
 
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
     margin-top: 40px;
 
     border-top:
         1px solid rgba(255,255,255,.15);
+
 }
+
 
 .market-list span {
 
@@ -806,45 +998,62 @@ select {
 
     font-family: "Inter";
 
-    color: rgba(255,255,255,.75);
+    color:
+        rgba(255,255,255,.75);
+
 }
 
 
-/* APPROACH */
+/* =========================
+   APPROACH
+========================= */
 
 .approach {
+
     background: white;
+
 }
+
 
 .approach-intro {
 
     max-width: 900px;
 
     margin-bottom: 65px;
+
 }
+
 
 .approach-intro h2 {
 
     font-size:
-        clamp(42px, 5vw, 68px);
+        clamp(42px,5vw,68px);
 
     line-height: 1.06;
 
     font-weight: 500;
+
 }
 
+
 .approach-intro h2 span {
+
     color: var(--green);
+
 }
+
 
 .approach-grid {
 
     display: grid;
 
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     border: 1px solid var(--line);
+
 }
+
 
 .approach-card {
 
@@ -852,12 +1061,18 @@ select {
 
     padding: 35px;
 
-    border-left: 1px solid var(--line);
+    border-left:
+        1px solid var(--line);
+
 }
 
+
 .approach-card:last-child {
+
     border-left: none;
+
 }
+
 
 .approach-card small {
 
@@ -866,7 +1081,9 @@ select {
     font-family: "Inter";
 
     font-size: 10px;
+
 }
+
 
 .approach-card h3 {
 
@@ -875,7 +1092,9 @@ select {
     font-size: 27px;
 
     margin-top: 65px;
+
 }
+
 
 .approach-card p {
 
@@ -886,285 +1105,243 @@ select {
     font-size: 12px;
 
     margin-top: 15px;
+
 }
 
 
-/* =========================================
-   ADVISORY ECOSYSTEM
-========================================= */
+/* =========================
+   PARTNERS
+========================= */
 
-.network {
+.partners {
 
-    padding: 130px 0;
+    padding: 140px 0;
 
     text-align: center;
 
     background: var(--cream);
+
 }
 
-.network h2 {
 
-    font-family: "Inter";
+.partners-container {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+}
+
+
+.partners h2 {
 
     font-size:
-        clamp(43px, 5vw, 70px);
+        clamp(48px,6vw,78px);
 
-    line-height: 1.03;
+    line-height: 1.05;
 
     font-weight: 500;
+
 }
 
-.network h2 span {
+
+.partners h2 span {
+
+    display: block;
+
     color: var(--green);
+
 }
 
-.network-intro {
 
-    max-width: 600px;
+.partners-intro {
 
-    margin: 25px auto 0;
+    max-width: 650px;
+
+    margin:
+        25px auto 0;
 
     color: var(--gray);
 
-    font-size: 15px;
+    font-size: 16px;
+
 }
 
 
-/* LOGOS */
+/* PARTNER GRID */
 
-.network-logos {
+.partner-logos {
 
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap: 25px;
 
     max-width: 1050px;
 
-    margin: 65px auto 30px;
+    margin:
+        70px auto 35px;
+
 }
 
-.network-logo {
 
-    height: 190px;
+/* PARTNER CARD */
 
-    display: flex;
+.partner-card {
 
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 35px;
+    height: 210px;
 
     background: white;
 
-    border: 1px solid #dedbd2;
-
-    transition: all .35s ease;
-}
-
-.network-logo:hover {
-
-    transform: translateY(-8px);
-
-    border-color: var(--gold);
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.09);
-}
-
-
-/* COMPANY MARKS */
-
-.company-mark {
+    border:
+        1px solid #ddd9d0;
 
     display: flex;
-
-    flex-direction: column;
 
     align-items: center;
 
     justify-content: center;
 
-    color: #111;
+    padding: 40px;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
 
 }
 
 
-/* MCKINSEY */
+.partner-card:hover {
 
-.mckinsey-mark {
-    flex-direction: row;
-    gap: 15px;
-}
+    transform:
+        translateY(-10px);
 
-.mckinsey-symbol {
+    border-color:
+        var(--gold);
 
-    font-family: Georgia, serif;
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.10);
 
-    font-size: 58px;
-
-    line-height: .8;
-
-    font-weight: 700;
-
-    color: #174c96;
-}
-
-.mckinsey-name {
-
-    text-align: left;
-
-    font-family: Georgia, serif;
-
-    font-size: 19px;
-
-    line-height: 1.05;
-
-    font-weight: 700;
-
-    color: #174c96;
 }
 
 
-/* BCG */
+/* LOGO IMAGE */
 
-.bcg-symbol {
+.partner-card img {
 
-    font-family: Arial, sans-serif;
+    display: block;
 
-    font-size: 58px;
+    width: auto;
 
-    line-height: 1;
+    max-width: 230px;
 
-    font-weight: 700;
+    max-height: 90px;
 
-    letter-spacing: -4px;
+    object-fit: contain;
 
-    color: #0066a6;
-}
-
-.bcg-name {
-
-    margin-top: 8px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 1.5px;
-
-    color: #555;
-
-    text-transform: uppercase;
 }
 
 
-/* BAIN */
+.partner-note {
 
-.bain-symbol {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 62px;
-
-    line-height: .9;
-
-    font-weight: 700;
-
-    letter-spacing: -4px;
-
-    color: #ed1b2f;
-}
-
-.bain-name {
-
-    margin-top: 5px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-
-    color: #222;
-}
-
-.network-disclaimer {
-
-    max-width: 700px;
-
-    margin: 25px auto 0;
+    margin-top: 25px;
 
     color: #999;
 
     font-family: "Inter";
 
-    font-size: 9px;
+    font-size: 10px;
 
-    line-height: 1.6;
+    letter-spacing: .5px;
+
 }
 
 
-/* CONTACT */
+/* =========================
+   CONTACT
+========================= */
 
 .contact {
+
     background: white;
+
 }
+
 
 .contact-grid {
 
     display: grid;
 
-    grid-template-columns: .85fr 1.15fr;
+    grid-template-columns:
+        .85fr 1.15fr;
 
     gap: 100px;
+
 }
 
-.contact-text h2 {
+
+.contact-copy h2 {
 
     font-size:
-        clamp(43px, 5vw, 68px);
+        clamp(43px,5vw,68px);
 
     line-height: 1.05;
 
     font-weight: 500;
+
 }
 
-.contact-text h2 span {
+
+.contact-copy h2 span {
 
     display: block;
 
     color: var(--green);
+
 }
 
-.contact-text p {
+
+.contact-copy p {
 
     max-width: 430px;
 
     color: var(--gray);
 
     margin-top: 25px;
+
 }
+
 
 #contactForm {
 
     padding: 45px;
 
     background: var(--cream);
+
 }
+
 
 .form-row {
 
     display: grid;
 
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
     gap: 20px;
+
 }
 
+
 .field {
+
     margin-bottom: 22px;
+
 }
+
 
 .field label {
 
@@ -1173,7 +1350,9 @@ select {
     font-size: 11px;
 
     margin-bottom: 7px;
+
 }
+
 
 .field input,
 .field select,
@@ -1183,23 +1362,32 @@ select {
 
     padding: 14px;
 
-    border: 1px solid var(--line);
+    border:
+        1px solid var(--line);
 
     background: white;
 
     outline: none;
+
 }
+
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
 
-    border-color: var(--green);
+    border-color:
+        var(--green);
+
 }
 
+
 .field textarea {
+
     resize: vertical;
+
 }
+
 
 #contactForm button {
 
@@ -1217,81 +1405,102 @@ select {
 
     display: flex;
 
+    justify-content: space-between;
+
     align-items: center;
 
-    justify-content: space-between;
 }
 
+
 #contactForm button:hover {
-    background: var(--dark);
+
+    background: var(--dark-green);
+
 }
+
 
 #formMessage {
 
     margin-top: 15px;
 
     font-size: 12px;
+
 }
 
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
 
-    padding: 70px 0 25px;
+    padding:
+        70px 0 25px;
 
     background: #061f1a;
 
     color: white;
+
 }
 
-.footer-main {
+
+.footer-grid {
 
     display: grid;
 
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns:
+        2fr 1fr 1fr;
 
     gap: 80px;
 
     padding-bottom: 70px;
+
 }
 
-.footer-logo strong {
+
+.footer-brand strong {
 
     display: block;
 
     font-size: 48px;
 
     line-height: 1;
+
 }
 
-.footer-logo span {
+
+.footer-brand span {
 
     display: block;
 
-    font-family: "Inter";
+    margin-top: 8px;
 
     color: var(--gold);
+
+    font-family: "Inter";
 
     font-size: 13px;
 
     letter-spacing: 5px;
 
-    margin-top: 8px;
 }
 
-.footer-logo p {
+
+.footer-brand p {
 
     max-width: 340px;
 
-    color: rgba(255,255,255,.45);
+    color:
+        rgba(255,255,255,.45);
 
     font-family: "Inter";
 
     font-size: 11px;
 
     margin-top: 20px;
+
 }
+
 
 .footer-column {
 
@@ -1300,7 +1509,9 @@ footer {
     flex-direction: column;
 
     gap: 11px;
+
 }
+
 
 .footer-column span {
 
@@ -1313,16 +1524,21 @@ footer {
     letter-spacing: 2px;
 
     margin-bottom: 5px;
+
 }
+
 
 .footer-column a {
 
-    color: rgba(255,255,255,.65);
+    color:
+        rgba(255,255,255,.65);
 
     font-family: "Inter";
 
     font-size: 11px;
+
 }
+
 
 .footer-bottom {
 
@@ -1335,157 +1551,278 @@ footer {
 
     justify-content: space-between;
 
-    color: rgba(255,255,255,.3);
+    color:
+        rgba(255,255,255,.3);
 
     font-family: "Inter";
 
     font-size: 9px;
+
 }
 
 
-/* MOBILE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 950px) {
 
+
     .nav-links {
+
         display: none;
+
     }
 
-    .nav-button {
+
+    .nav-cta {
+
         display: none;
+
     }
+
 
     .about-grid,
     .markets-grid,
     .contact-grid {
+
         grid-template-columns: 1fr;
+
         gap: 60px;
+
     }
 
-    .services-header {
+
+    .services-intro {
+
         flex-direction: column;
+
         gap: 30px;
+
     }
+
 
     .services-grid {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
+
 
     .approach-grid {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
+
 
     .approach-card {
-        border-bottom: 1px solid var(--line);
+
+        border-bottom:
+            1px solid var(--line);
+
     }
 
-    .network-logos {
+
+    .partner-logos {
+
         grid-template-columns: 1fr;
+
         max-width: 500px;
+
     }
 
-    .footer-main {
-        grid-template-columns: 1fr 1fr;
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
     }
 
-    .footer-logo {
-        grid-column: 1 / -1;
+
+    .footer-brand {
+
+        grid-column:
+            1 / -1;
+
     }
+
 }
 
 
 @media (max-width: 600px) {
 
+
     .nav-container {
+
         min-height: 76px;
+
     }
+
 
     .logo-ar {
+
         font-size: 27px;
+
     }
+
 
     .logo-en {
+
         font-size: 9px;
+
         letter-spacing: 2px;
+
     }
 
-    .hero-container {
+
+    .hero-content {
+
         padding-top: 130px;
+
     }
 
-    .hero-logo {
+
+    .hero-brand {
+
         flex-direction: column;
-        gap: 12px;
+
         align-items: flex-start;
+
+        gap: 12px;
+
     }
 
-    .hero-logo-ar {
+
+    .hero-ar {
+
         font-size: 75px;
-        letter-spacing: -2px;
+
     }
 
-    .hero-logo-en {
+
+    .hero-en {
+
         font-size: 20px;
+
         letter-spacing: 5px;
+
     }
+
 
     .hero h1 {
+
         font-size: 45px;
-        letter-spacing: -1px;
+
     }
 
-    .hero-actions {
+
+    .hero-buttons {
+
         flex-direction: column;
+
     }
 
-    .button {
+
+    .btn {
+
         text-align: center;
+
     }
 
-    .hero-bottom {
+
+    .hero-meta {
+
         flex-wrap: wrap;
+
         gap: 15px;
+
     }
+
 
     .services-grid {
+
         grid-template-columns: 1fr;
+
     }
+
 
     .approach-grid {
+
         grid-template-columns: 1fr;
+
     }
+
 
     .approach-card {
+
         border-left: none;
+
     }
 
-    .network-logos {
+
+    .partner-logos {
+
         grid-template-columns: 1fr;
+
         max-width: 330px;
+
     }
 
-    .network-logo {
-        height: 150px;
+
+    .partner-card {
+
+        height: 160px;
+
     }
+
+
+    .partner-card img {
+
+        max-width: 210px;
+
+        max-height: 70px;
+
+    }
+
 
     .form-row {
+
         grid-template-columns: 1fr;
+
     }
+
 
     #contactForm {
+
         padding: 25px;
+
     }
 
-    .footer-main {
+
+    .footer-grid {
+
         grid-template-columns: 1fr;
+
     }
 
-    .footer-logo {
+
+    .footer-brand {
+
         grid-column: auto;
+
     }
+
 
     .footer-bottom {
+
         flex-direction: column;
+
         gap: 10px;
+
     }
+
 }
