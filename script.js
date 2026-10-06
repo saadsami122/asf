@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================================
+    /* =====================================================
        LANGUAGE SYSTEM
-    ========================================= */
+    ===================================================== */
 
     const languageBtn = document.getElementById("languageBtn");
 
@@ -12,9 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateLanguage() {
 
-        /* لغة واتجاه الصفحة */
         document.documentElement.lang = currentLanguage;
-
         document.documentElement.dir =
             currentLanguage === "ar" ? "rtl" : "ltr";
 
@@ -24,30 +22,74 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        /* -----------------------------------------
-           تغيير النصوص
-        ----------------------------------------- */
+        /*
+         * مهم:
+         * لا نستخدم textContent للعناصر التي بداخلها span / br
+         * لأن ذلك يمسح HTML الداخلي.
+         *
+         * بدلًا من ذلك نستخدم innerHTML فقط عندما يكون
+         * النص يحتوي على <br>.
+         */
 
         document.querySelectorAll(
             "[data-ar][data-en]"
         ).forEach(function (element) {
 
-            const translatedText =
+            const value =
                 element.getAttribute(
                     "data-" + currentLanguage
                 );
 
-            if (translatedText !== null) {
+            if (value === null) return;
+
+
+            /*
+             * العناصر التي تحتوي على HTML مثل:
+             * <br>
+             */
+            if (value.includes("<br")) {
+
+                element.innerHTML = value;
+
+            } else {
 
                 /*
-                 * بعض العناصر تحتوي HTML مثل <br>
-                 * لذلك نستخدم innerHTML إذا كان النص يحتوي
-                 * على HTML.
+                 * إذا كان العنصر يحتوي على عناصر داخلية
+                 * مثل span، نحافظ عليها.
                  */
-                if (translatedText.includes("<")) {
-                    element.innerHTML = translatedText;
+
+                const children =
+                    Array.from(element.children);
+
+                if (children.length > 0) {
+
+                    /*
+                     * نحاول تحديث النص بدون حذف العناصر الداخلية.
+                     *
+                     * للعناوين التي تحتوي span:
+                     * يتم التعامل معها بشكل خاص بالأسفل.
+                     */
+
+                    if (
+                        element.tagName === "H1" ||
+                        element.tagName === "H2"
+                    ) {
+
+                        updateHeadingWithSpan(
+                            element,
+                            value
+                        );
+
+                    } else {
+
+                        element.textContent = value;
+
+                    }
+
                 } else {
-                    element.textContent = translatedText;
+
+                    element.textContent = value;
+
                 }
 
             }
@@ -55,9 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-        /* -----------------------------------------
-           زر اللغة
-        ----------------------------------------- */
+        /*
+         * اللغة
+         */
 
         if (languageBtn) {
 
@@ -69,20 +111,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* -----------------------------------------
-           تحديث القوائم
-        ----------------------------------------- */
+        /*
+         * تحديث الـ select
+         */
 
-        updateSelectOptions();
+        updateSelectLanguage();
 
-        /* -----------------------------------------
-           تحديث نافذة الخدمات
-        ----------------------------------------- */
+
+        /*
+         * تحديث المودال إذا كان مفتوحًا
+         */
 
         updateModalLanguage();
 
 
-        /* حفظ اللغة */
+        /*
+         * حفظ اللغة
+         */
 
         localStorage.setItem(
             "haseefLanguage",
@@ -92,9 +137,156 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
+    /* =====================================================
+       HEADINGS WITH SPAN
+    ===================================================== */
+
+    function updateHeadingWithSpan(
+        element,
+        value
+    ) {
+
+        /*
+         * بعض العناوين في HTML عندها:
+         *
+         * <h2>
+         *   النص
+         *   <span>النص</span>
+         * </h2>
+         *
+         * لذلك لا نمسح الـ span.
+         */
+
+
+        const span =
+            element.querySelector(":scope > span");
+
+        const em =
+            element.querySelector(":scope > em");
+
+
+        /*
+         * إذا كان العنوان لا يحتوي span أو em
+         */
+
+        if (!span && !em) {
+
+            element.textContent = value;
+
+            return;
+
+        }
+
+
+        /*
+         * العناوين التي نحتاج الحفاظ على تصميمها
+         *
+         * نستخدم النص العربي/الإنجليزي الموجود
+         * في HTML بدل تدمير البنية.
+         */
+
+        if (element.closest(".about")) {
+
+            if (currentLanguage === "ar") {
+
+                element.innerHTML =
+                    "التوسع يبدأ <em>بفهم السوق.</em>";
+
+            } else {
+
+                element.innerHTML =
+                    "Expansion starts with <em>understanding the market.</em>";
+
+            }
+
+            return;
+        }
+
+
+        if (element.closest(".services-header")) {
+
+            if (currentLanguage === "ar") {
+
+                element.innerHTML =
+                    "من الفرصة <span>إلى الاستراتيجية.</span>";
+
+            } else {
+
+                element.innerHTML =
+                    "From opportunity <span>to strategy.</span>";
+
+            }
+
+            return;
+        }
+
+
+        if (element.closest(".markets")) {
+
+            if (currentLanguage === "ar") {
+
+                element.innerHTML =
+                    "كل سوق له <span>منطقه الخاص.</span>";
+
+            } else {
+
+                element.innerHTML =
+                    "Every market has <span>its own logic.</span>";
+
+            }
+
+            return;
+        }
+
+
+        if (element.closest(".approach-intro")) {
+
+            if (currentLanguage === "ar") {
+
+                element.innerHTML =
+                    "نفكر بوضوح، <span>نختبر بصرامة، ونتحرك بثقة.</span>";
+
+            } else {
+
+                element.innerHTML =
+                    "Think clearly. <span>Test rigorously. Move confidently.</span>";
+
+            }
+
+            return;
+        }
+
+
+        if (element.closest(".contact-text")) {
+
+            if (currentLanguage === "ar") {
+
+                element.innerHTML =
+                    "لديك سوق جديد <span>في ذهنك؟</span>";
+
+            } else {
+
+                element.innerHTML =
+                    "Thinking about <span>a new market?</span>";
+
+            }
+
+            return;
+        }
+
+
+        /*
+         * إذا لم يكن من الحالات السابقة
+         */
+
+        element.textContent = value;
+
+    }
+
+
+    /* =====================================================
        LANGUAGE BUTTON
-    ========================================= */
+    ===================================================== */
 
     if (languageBtn) {
 
@@ -115,25 +307,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
-       SELECT OPTIONS
-    ========================================= */
+    /* =====================================================
+       SELECT LANGUAGE
+    ===================================================== */
 
-    function updateSelectOptions() {
+    function updateSelectLanguage() {
 
-        const options =
-            document.querySelectorAll(
-                "#interest option[data-ar][data-en]"
-            );
+        const select =
+            document.getElementById("interest");
 
-        options.forEach(function (option) {
+        if (!select) return;
+
+
+        select.querySelectorAll(
+            "option[data-ar][data-en]"
+        ).forEach(function (option) {
 
             const text =
                 option.getAttribute(
                     "data-" + currentLanguage
                 );
 
-            if (text !== null) {
+            if (text) {
 
                 option.textContent = text;
 
@@ -144,9 +339,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
+    /* =====================================================
        SERVICES DATA
-    ========================================= */
+    ===================================================== */
 
     const services = {
 
@@ -374,9 +569,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* =========================================
+    /* =====================================================
        SERVICE MODAL
-    ========================================= */
+    ===================================================== */
 
     const modal =
         document.getElementById("serviceModal");
@@ -402,54 +597,80 @@ document.addEventListener("DOMContentLoaded", function () {
     const serviceCards =
         document.querySelectorAll(".service");
 
+
     let activeService = null;
 
 
-    function renderModal(serviceKey) {
+    function openService(serviceKey) {
+
+        if (!modal) return;
 
         const service =
             services[serviceKey];
 
         if (!service) return;
 
+        activeService = serviceKey;
+
+        renderModal(service);
+
+        modal.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+    function renderModal(service) {
+
         const language =
             service[currentLanguage];
 
         if (modalNumber) {
+
             modalNumber.textContent =
                 service.number;
+
         }
 
         if (modalTitle) {
+
             modalTitle.textContent =
                 language.title;
+
         }
 
         if (modalDescription) {
+
             modalDescription.textContent =
                 language.description;
+
         }
+
 
         if (modalPoints) {
 
             modalPoints.innerHTML = "";
 
-            language.points.forEach(function (point) {
+            language.points.forEach(
+                function (point) {
 
-                const item =
-                    document.createElement("div");
+                    const item =
+                        document.createElement("div");
 
-                item.className =
-                    "modal-point";
+                    item.className =
+                        "modal-point";
 
-                item.textContent =
-                    "✓ " + point;
+                    item.textContent =
+                        "✓ " + point;
 
-                modalPoints.appendChild(item);
+                    modalPoints.appendChild(item);
 
-            });
+                }
+            );
 
         }
+
 
         if (modalContact) {
 
@@ -470,62 +691,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    function openService(serviceKey) {
-
-        if (!services[serviceKey]) return;
-
-        activeService =
-            serviceKey;
-
-        renderModal(serviceKey);
-
-        if (modal) {
-
-            modal.classList.add("active");
-
-        }
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
     function updateModalLanguage() {
 
         if (!activeService) return;
 
-        renderModal(activeService);
+        const service =
+            services[activeService];
+
+        if (!service) return;
+
+        renderModal(service);
 
     }
 
 
-    serviceCards.forEach(function (card) {
+    serviceCards.forEach(
+        function (card) {
 
-        card.addEventListener(
-            "click",
-            function () {
+            card.addEventListener(
+                "click",
+                function () {
 
-                const serviceKey =
-                    card.getAttribute(
-                        "data-service"
-                    );
+                    const serviceKey =
+                        card.getAttribute(
+                            "data-service"
+                        );
 
-                openService(serviceKey);
+                    openService(serviceKey);
 
-            }
-        );
+                }
+            );
 
-    });
+        }
+    );
 
 
     function closeModal() {
 
-        if (modal) {
+        if (!modal) return;
 
-            modal.classList.remove("active");
-
-        }
+        modal.classList.remove("active");
 
         document.body.style.overflow = "";
 
@@ -591,9 +796,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
+    /* =====================================================
        CONTACT FORM
-    ========================================= */
+    ===================================================== */
 
     const form =
         document.getElementById("contactForm");
@@ -610,11 +815,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 event.preventDefault();
 
+
                 const name =
                     document
                         .getElementById("name")
                         ?.value
                         .trim();
+
 
                 const email =
                     document
@@ -654,7 +861,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
+
                 form.reset();
+
+
+                /*
+                 * بعد reset نرجع لغة الـ select
+                 */
+
+                updateSelectLanguage();
 
             }
         );
@@ -662,9 +877,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
+    /* =====================================================
        NAVBAR SHADOW
-    ========================================= */
+    ===================================================== */
 
     const navbar =
         document.querySelector(".navbar");
@@ -675,6 +890,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function () {
 
             if (!navbar) return;
+
 
             if (window.scrollY > 30) {
 
@@ -692,9 +908,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =========================================
-       INITIALIZE
-    ========================================= */
+    /* =====================================================
+       START WEBSITE
+    ===================================================== */
 
     updateLanguage();
 
