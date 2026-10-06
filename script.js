@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================
+    /* =========================================
        LANGUAGE SYSTEM
-    ========================= */
+    ========================================= */
 
-    const languageBtn =
-        document.getElementById("languageBtn");
+    const languageBtn = document.getElementById("languageBtn");
 
     let currentLanguage =
         localStorage.getItem("haseefLanguage") || "ar";
@@ -13,13 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateLanguage() {
 
-        document.documentElement.lang =
-            currentLanguage;
+        /* لغة واتجاه الصفحة */
+        document.documentElement.lang = currentLanguage;
 
         document.documentElement.dir =
-            currentLanguage === "ar"
-                ? "rtl"
-                : "ltr";
+            currentLanguage === "ar" ? "rtl" : "ltr";
 
         document.body.classList.toggle(
             "en",
@@ -27,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        /*
-         * تغيير جميع النصوص التي تحتوي
-         * data-ar و data-en
-         */
+        /* -----------------------------------------
+           تغيير النصوص
+        ----------------------------------------- */
+
         document.querySelectorAll(
             "[data-ar][data-en]"
         ).forEach(function (element) {
@@ -43,37 +40,24 @@ document.addEventListener("DOMContentLoaded", function () {
             if (translatedText !== null) {
 
                 /*
-                 * innerHTML مهم هنا لأن بعض
-                 * النصوص تحتوي على <br>
+                 * بعض العناصر تحتوي HTML مثل <br>
+                 * لذلك نستخدم innerHTML إذا كان النص يحتوي
+                 * على HTML.
                  */
-                if (
-                    translatedText.includes("<br>")
-                ) {
-                    element.innerHTML =
-                        translatedText;
+                if (translatedText.includes("<")) {
+                    element.innerHTML = translatedText;
                 } else {
-                    element.textContent =
-                        translatedText;
+                    element.textContent = translatedText;
                 }
+
             }
 
         });
 
 
-        /*
-         * ترجمة خيارات الـ select
-         */
-        document.querySelectorAll(
-            "option[data-ar][data-en]"
-        ).forEach(function (option) {
-
-            option.textContent =
-                option.getAttribute(
-                    "data-" + currentLanguage
-                );
-
-        });
-
+        /* -----------------------------------------
+           زر اللغة
+        ----------------------------------------- */
 
         if (languageBtn) {
 
@@ -85,16 +69,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        /* -----------------------------------------
+           تحديث القوائم
+        ----------------------------------------- */
+
+        updateSelectOptions();
+
+        /* -----------------------------------------
+           تحديث نافذة الخدمات
+        ----------------------------------------- */
+
+        updateModalLanguage();
+
+
+        /* حفظ اللغة */
+
         localStorage.setItem(
             "haseefLanguage",
             currentLanguage
         );
 
-
-        updateModalLanguage();
-
     }
 
+
+    /* =========================================
+       LANGUAGE BUTTON
+    ========================================= */
 
     if (languageBtn) {
 
@@ -115,9 +115,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================
+    /* =========================================
+       SELECT OPTIONS
+    ========================================= */
+
+    function updateSelectOptions() {
+
+        const options =
+            document.querySelectorAll(
+                "#interest option[data-ar][data-en]"
+            );
+
+        options.forEach(function (option) {
+
+            const text =
+                option.getAttribute(
+                    "data-" + currentLanguage
+                );
+
+            if (text !== null) {
+
+                option.textContent = text;
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
        SERVICES DATA
-    ========================= */
+    ========================================= */
 
     const services = {
 
@@ -127,8 +156,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ar: {
                 title: "دخول الأسواق",
+
                 description:
                     "نساعد الشركات على تقييم الأسواق الدولية واختيار المسار الأنسب للدخول والتوسع، من خلال دراسة السوق والمنافسة والعملاء والبيئة التجارية.",
+
                 points: [
                     "اختيار الأسواق ذات الأولوية",
                     "تحليل حجم السوق وجاذبيته",
@@ -140,8 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             en: {
                 title: "Market Entry",
+
                 description:
                     "We help companies assess international markets and define the right path to enter and scale through market, customer, competitive and commercial analysis.",
+
                 points: [
                     "Market prioritization",
                     "Market sizing and attractiveness",
@@ -160,8 +193,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ar: {
                 title: "ذكاء السوق",
+
                 description:
                     "نحوّل البيانات والمعلومات المتفرقة إلى رؤية واضحة تساعد الإدارة والمستثمرين على فهم السوق واتخاذ قرارات أفضل.",
+
                 points: [
                     "تحليل السوق والقطاع",
                     "دراسة المنافسين",
@@ -173,8 +208,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             en: {
                 title: "Market Intelligence",
+
                 description:
                     "We turn fragmented information into clear market intelligence that helps executives and investors make better strategic decisions.",
+
                 points: [
                     "Market and industry analysis",
                     "Competitive intelligence",
@@ -193,8 +230,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ar: {
                 title: "استراتيجية النمو",
+
                 description:
                     "نساعد الشركات على تحديد محركات النمو وبناء خطط استراتيجية عملية ترتبط بأهدافها التجارية.",
+
                 points: [
                     "تحديد فرص النمو",
                     "تطوير الاستراتيجية التجارية",
@@ -206,8 +245,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             en: {
                 title: "Growth Strategy",
+
                 description:
                     "We help businesses identify growth drivers and build practical strategies aligned with their commercial ambitions.",
+
                 points: [
                     "Growth opportunity identification",
                     "Commercial strategy",
@@ -226,8 +267,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ar: {
                 title: "الاستشارات الاستثمارية",
+
                 description:
                     "نقدم منظورًا استراتيجيًا للمستثمرين الراغبين في تقييم أسواق أو فرص جديدة وفهم الإمكانات التجارية.",
+
                 points: [
                     "دراسة جاذبية السوق",
                     "تقييم الفرصة التجارية",
@@ -239,8 +282,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             en: {
                 title: "Investment Advisory",
+
                 description:
                     "We provide investors with strategic perspectives to evaluate new markets and opportunities and understand their commercial potential.",
+
                 points: [
                     "Market attractiveness",
                     "Commercial opportunity assessment",
@@ -259,8 +304,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ar: {
                 title: "الفحص التجاري",
+
                 description:
                     "تحليل مستقل للسوق والعملاء والمنافسين والإمكانات التجارية لمساعدة المستثمرين والشركات على اتخاذ قرارات أكثر وضوحًا.",
+
                 points: [
                     "تحليل السوق",
                     "تقييم الطلب والعملاء",
@@ -272,8 +319,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             en: {
                 title: "Commercial Due Diligence",
+
                 description:
                     "Independent analysis of markets, customers, competitors and commercial potential to support confident business and investment decisions.",
+
                 points: [
                     "Market assessment",
                     "Customer and demand analysis",
@@ -292,8 +341,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ar: {
                 title: "الشراكات الدولية",
+
                 description:
                     "نساعد الشركات على فهم فرص التعاون الدولي وتطوير مسارات عملية لبناء علاقات وشراكات تجارية.",
+
                 points: [
                     "تحديد فرص التعاون",
                     "تقييم الشركاء المحتملين",
@@ -305,8 +356,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             en: {
                 title: "International Partnerships",
+
                 description:
                     "We support companies in identifying international partnership opportunities and developing practical paths toward strategic commercial relationships.",
+
                 points: [
                     "Partnership opportunity mapping",
                     "Potential partner assessment",
@@ -321,9 +374,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* =========================
+    /* =========================================
        SERVICE MODAL
-    ========================= */
+    ========================================= */
 
     const modal =
         document.getElementById("serviceModal");
@@ -352,44 +405,36 @@ document.addEventListener("DOMContentLoaded", function () {
     let activeService = null;
 
 
-    function openService(serviceKey) {
+    function renderModal(serviceKey) {
 
         const service =
             services[serviceKey];
 
-        if (!service || !modal) return;
-
-        activeService =
-            serviceKey;
-
-        modal.classList.add("active");
-
-        document.body.style.overflow =
-            "hidden";
-
-        renderModal(service);
-    }
-
-
-    function renderModal(service) {
+        if (!service) return;
 
         const language =
             service[currentLanguage];
 
-        modalNumber.textContent =
-            service.number;
+        if (modalNumber) {
+            modalNumber.textContent =
+                service.number;
+        }
 
-        modalTitle.textContent =
-            language.title;
+        if (modalTitle) {
+            modalTitle.textContent =
+                language.title;
+        }
 
-        modalDescription.textContent =
-            language.description;
+        if (modalDescription) {
+            modalDescription.textContent =
+                language.description;
+        }
 
-        modalPoints.innerHTML = "";
+        if (modalPoints) {
 
+            modalPoints.innerHTML = "";
 
-        language.points.forEach(
-            function (point) {
+            language.points.forEach(function (point) {
 
                 const item =
                     document.createElement("div");
@@ -400,22 +445,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 item.textContent =
                     "✓ " + point;
 
-                modalPoints.appendChild(
-                    item
-                );
+                modalPoints.appendChild(item);
 
-            }
-        );
+            });
 
+        }
 
         if (modalContact) {
 
-            modalContact.textContent =
+            const contactText =
                 modalContact.getAttribute(
                     "data-" + currentLanguage
                 );
 
+            if (contactText) {
+
+                modalContact.textContent =
+                    contactText;
+
+            }
+
         }
+
+    }
+
+
+    function openService(serviceKey) {
+
+        if (!services[serviceKey]) return;
+
+        activeService =
+            serviceKey;
+
+        renderModal(serviceKey);
+
+        if (modal) {
+
+            modal.classList.add("active");
+
+        }
+
+        document.body.style.overflow =
+            "hidden";
 
     }
 
@@ -424,48 +495,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!activeService) return;
 
-        const service =
-            services[activeService];
+        renderModal(activeService);
 
-        if (!service) return;
-
-        renderModal(service);
     }
 
 
-    serviceCards.forEach(
-        function (card) {
+    serviceCards.forEach(function (card) {
 
-            card.addEventListener(
-                "click",
-                function () {
+        card.addEventListener(
+            "click",
+            function () {
 
-                    const serviceKey =
-                        card.getAttribute(
-                            "data-service"
-                        );
+                const serviceKey =
+                    card.getAttribute(
+                        "data-service"
+                    );
 
-                    openService(serviceKey);
+                openService(serviceKey);
 
-                }
-            );
+            }
+        );
 
-        }
-    );
+    });
 
 
     function closeModal() {
 
-        if (!modal) return;
+        if (modal) {
 
-        modal.classList.remove(
-            "active"
-        );
+            modal.classList.remove("active");
 
-        document.body.style.overflow =
-            "";
+        }
+
+        document.body.style.overflow = "";
 
         activeService = null;
+
     }
 
 
@@ -501,9 +566,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (
                 event.key === "Escape" &&
                 modal &&
-                modal.classList.contains(
-                    "active"
-                )
+                modal.classList.contains("active")
             ) {
 
                 closeModal();
@@ -528,19 +591,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================
+    /* =========================================
        CONTACT FORM
-    ========================= */
+    ========================================= */
 
     const form =
-        document.getElementById(
-            "contactForm"
-        );
+        document.getElementById("contactForm");
 
     const formMessage =
-        document.getElementById(
-            "formMessage"
-        );
+        document.getElementById("formMessage");
 
 
     if (form) {
@@ -579,6 +638,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                     return;
+
                 }
 
 
@@ -591,8 +651,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     formMessage.style.color =
                         "#087443";
-                }
 
+                }
 
                 form.reset();
 
@@ -602,14 +662,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================
-       NAVBAR
-    ========================= */
+    /* =========================================
+       NAVBAR SHADOW
+    ========================================= */
 
     const navbar =
-        document.querySelector(
-            ".navbar"
-        );
+        document.querySelector(".navbar");
 
 
     window.addEventListener(
@@ -634,9 +692,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =========================
-       START
-    ========================= */
+    /* =========================================
+       INITIALIZE
+    ========================================= */
 
     updateLanguage();
 
