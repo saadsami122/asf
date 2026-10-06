@@ -1,42 +1,27 @@
 :root {
 
     --green: #082d26;
-
-    --dark-green: #041b17;
-
+    --dark: #041b17;
     --gold: #c4a66a;
 
     --cream: #f3f0e8;
-
     --white: #ffffff;
-
     --black: #111614;
-
     --gray: #707875;
-
     --line: #d9ddd8;
 
     --container: 1220px;
 }
 
-
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
 }
-
 
 body {
 
@@ -49,89 +34,65 @@ body {
         sans-serif;
 
     line-height: 1.7;
-
 }
-
 
 body.en {
 
-    font-family:
-        "Inter",
-        sans-serif;
+    font-family: "Inter", sans-serif;
 
     direction: ltr;
-
 }
-
 
 a {
-
     color: inherit;
-
     text-decoration: none;
-
 }
-
 
 button,
 input,
 textarea,
 select {
-
     font: inherit;
-
 }
-
 
 .container {
 
     width: min(90%, var(--container));
 
     margin: auto;
-
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* NAVBAR */
 
 .navbar {
 
     position: fixed;
 
     top: 0;
-
     left: 0;
 
     width: 100%;
 
     z-index: 1000;
 
-    background:
-        rgba(243,240,232,.94);
+    background: rgba(243,240,232,.94);
 
-    backdrop-filter:
-        blur(18px);
+    backdrop-filter: blur(18px);
 
-    border-bottom:
-        1px solid rgba(0,0,0,.06);
-
+    border-bottom: 1px solid rgba(0,0,0,.06);
 }
-
 
 .nav-container {
 
-    min-height: 90px;
+    min-height: 92px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
-
 }
-
 
 .logo {
 
@@ -140,46 +101,40 @@ select {
     align-items: center;
 
     gap: 13px;
-
 }
-
 
 .logo-ar {
 
-    font-size: 34px;
+    font-size: 35px;
 
     line-height: 1;
 
     font-weight: 700;
 
     color: var(--green);
-
 }
 
-
-.logo-divider {
+.logo-line {
 
     width: 1px;
 
     height: 28px;
 
     background: var(--gold);
-
 }
-
 
 .logo-en {
 
     font-family: "Inter";
 
-    font-size: 11px;
+    font-size: 12px;
 
     letter-spacing: 4px;
 
     color: var(--gold);
 
+    font-weight: 600;
 }
-
 
 .nav-links {
 
@@ -187,69 +142,55 @@ select {
 
     align-items: center;
 
-    gap: 28px;
-
+    gap: 30px;
 }
-
 
 .nav-links a {
 
     font-size: 13px;
 
     transition: .25s;
-
 }
-
 
 .nav-links a:hover {
-
     color: var(--gold);
-
 }
 
-
-.nav-actions {
+.nav-right {
 
     display: flex;
 
     align-items: center;
 
     gap: 12px;
-
 }
-
 
 #languageBtn {
 
-    padding: 8px 12px;
+    border: 1px solid var(--green);
 
     background: transparent;
 
-    border: 1px solid var(--green);
-
     color: var(--green);
 
-    cursor: pointer;
+    padding: 8px 12px;
 
+    cursor: pointer;
 }
 
-
-.nav-cta {
-
-    padding: 11px 18px;
+.nav-button {
 
     background: var(--green);
 
     color: white;
 
-    font-size: 12px;
+    padding: 11px 18px;
 
+    font-size: 12px;
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
 
@@ -261,14 +202,14 @@ select {
 
     align-items: center;
 
-    color: white;
-
     overflow: hidden;
 
+    color: white;
+
+    background: var(--green);
 }
 
-
-.hero-image {
+.hero-background {
 
     position: absolute;
 
@@ -280,9 +221,7 @@ select {
     background-size: cover;
 
     background-position: center;
-
 }
-
 
 .hero-overlay {
 
@@ -294,185 +233,151 @@ select {
         linear-gradient(
             90deg,
             rgba(3,25,21,.97),
-            rgba(3,25,21,.75),
-            rgba(3,25,21,.30)
+            rgba(3,25,21,.78),
+            rgba(3,25,21,.35)
         );
-
 }
 
-
-.hero-content {
+.hero-container {
 
     position: relative;
 
     z-index: 2;
 
     padding-top: 110px;
-
 }
 
-
-.hero-brand {
+.hero-logo {
 
     display: flex;
 
     align-items: baseline;
 
-    gap: 25px;
+    gap: 26px;
 
     margin-bottom: 30px;
-
 }
 
-
-.hero-ar {
+.hero-logo-ar {
 
     font-size:
-        clamp(70px,10vw,135px);
+        clamp(70px, 10vw, 135px);
 
     line-height: .8;
 
     font-weight: 700;
 
+    letter-spacing: -5px;
 }
 
-
-.hero-en {
+.hero-logo-en {
 
     font-family: "Inter";
 
-    color: var(--gold);
-
     font-size:
-        clamp(23px,3vw,43px);
+        clamp(24px, 3vw, 43px);
 
     letter-spacing: 8px;
 
+    color: var(--gold);
+
+    font-weight: 600;
 }
 
-
-.hero-label {
+.hero-tag {
 
     color: var(--gold);
 
     font-family: "Inter";
 
-    font-size: 10px;
+    font-size: 11px;
 
     letter-spacing: 2px;
 
     margin-bottom: 20px;
-
 }
-
-
-.hero-label span {
-
-    margin: 0 7px;
-
-}
-
 
 .hero h1 {
 
     max-width: 1000px;
 
     font-size:
-        clamp(44px,6vw,78px);
+        clamp(45px, 6vw, 78px);
 
-    line-height: 1.05;
+    line-height: 1.04;
 
     font-weight: 500;
 
+    letter-spacing: -2px;
 }
-
 
 .hero h1 span {
 
     display: block;
 
     color: #d3ba83;
-
 }
-
 
 .hero p {
 
     max-width: 720px;
 
-    color:
-        rgba(255,255,255,.72);
+    color: rgba(255,255,255,.7);
 
     font-size: 17px;
 
     margin-top: 30px;
-
 }
 
-
-.hero-buttons {
+.hero-actions {
 
     display: flex;
 
     gap: 13px;
 
     margin-top: 38px;
-
 }
 
-
-.btn {
+.button {
 
     padding: 15px 25px;
 
     font-size: 13px;
 
     transition: .25s;
-
 }
 
-
-.btn-primary {
+.button-primary {
 
     background: white;
 
     color: var(--green);
-
 }
 
-
-.btn-primary:hover {
+.button-primary:hover {
 
     background: var(--gold);
 
     color: white;
 
-    transform:
-        translateY(-3px);
-
+    transform: translateY(-3px);
 }
 
+.button-outline {
 
-.btn-secondary {
-
-    border:
-        1px solid rgba(255,255,255,.5);
+    border: 1px solid rgba(255,255,255,.5);
 
     color: white;
-
 }
 
-
-.btn-secondary:hover {
+.button-outline:hover {
 
     background: white;
 
     color: var(--green);
-
 }
 
-
-.hero-meta {
+.hero-bottom {
 
     display: flex;
 
@@ -480,28 +385,22 @@ select {
 
     margin-top: 65px;
 
-    color:
-        rgba(255,255,255,.42);
+    color: rgba(255,255,255,.4);
 
     font-family: "Inter";
 
     font-size: 9px;
 
     letter-spacing: 2px;
-
 }
 
 
-/* =========================
-   SECTIONS
-========================= */
+/* GENERAL */
 
 .section {
 
     padding: 130px 0;
-
 }
-
 
 .section-label {
 
@@ -515,91 +414,71 @@ select {
 
     font-family: "Inter";
 
-    font-size: 10px;
+    font-size: 11px;
 
     letter-spacing: 1.5px;
-
 }
-
 
 .section-label span {
-
     color: var(--gold);
+}
 
+.section-label strong {
+    font-weight: 500;
 }
 
 
-/* =========================
-   ABOUT
-========================= */
+/* ABOUT */
 
 .about {
-
     background: white;
-
 }
-
 
 .about-grid {
 
     display: grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
     gap: 110px;
-
 }
 
-
-.about-title h2 {
+.about h2 {
 
     font-size:
-        clamp(45px,5vw,72px);
+        clamp(45px, 5vw, 72px);
 
     line-height: 1.05;
 
     font-weight: 500;
-
 }
 
-
-.about-title em {
+.about h2 em {
 
     display: block;
 
     color: var(--green);
 
     font-style: normal;
-
 }
 
-
-.about-text {
+.about-copy {
 
     color: var(--gray);
 
     font-size: 16px;
-
 }
 
-
-.about-text p {
-
+.about-copy p {
     margin-bottom: 25px;
-
 }
-
 
 .stats {
 
     margin-top: 45px;
 
-    border-top:
-        1px solid var(--line);
-
+    border-top: 1px solid var(--line);
 }
-
 
 .stats div {
 
@@ -609,11 +488,8 @@ select {
 
     padding: 17px 0;
 
-    border-bottom:
-        1px solid var(--line);
-
+    border-bottom: 1px solid var(--line);
 }
-
 
 .stats strong {
 
@@ -622,9 +498,7 @@ select {
     font-family: "Inter";
 
     font-size: 12px;
-
 }
-
 
 .stats span {
 
@@ -633,30 +507,25 @@ select {
     font-family: "Inter";
 
     font-size: 13px;
-
 }
 
 
-/* =========================
-   IMAGE
-========================= */
+/* VISUAL */
 
-.image-section {
-
-    position: relative;
+.visual-section {
 
     height: 620px;
+
+    position: relative;
 
     display: flex;
 
     align-items: center;
 
     overflow: hidden;
-
 }
 
-
-.image-section-bg {
+.visual-image {
 
     position: absolute;
 
@@ -668,11 +537,9 @@ select {
     background-size: cover;
 
     background-position: center;
-
 }
 
-
-.image-section-overlay {
+.visual-overlay {
 
     position: absolute;
 
@@ -681,25 +548,21 @@ select {
     background:
         linear-gradient(
             90deg,
-            rgba(3,25,21,.94),
+            rgba(3,25,21,.93),
             rgba(3,25,21,.25)
         );
-
 }
 
-
-.image-section-content {
+.visual-content {
 
     position: relative;
 
     z-index: 2;
 
     color: white;
-
 }
 
-
-.image-section-content span {
+.visual-content span {
 
     color: var(--gold);
 
@@ -708,31 +571,30 @@ select {
     font-size: 10px;
 
     letter-spacing: 2px;
-
 }
 
-
-.image-section-content h2 {
+.visual-content h2 {
 
     font-family: "Inter";
 
     font-size:
-        clamp(50px,7vw,95px);
+        clamp(50px, 7vw, 95px);
 
     line-height: .95;
 
     font-weight: 500;
 
     margin-top: 25px;
-
 }
 
 
-/* =========================
-   SERVICES
-========================= */
+/* SERVICES */
 
-.services-intro {
+.services {
+    background: var(--cream);
+}
+
+.services-header {
 
     display: flex;
 
@@ -741,57 +603,43 @@ select {
     gap: 80px;
 
     margin-bottom: 60px;
-
 }
 
-
-.services-intro h2 {
+.services-header h2 {
 
     font-size:
-        clamp(43px,5vw,68px);
+        clamp(43px, 5vw, 68px);
 
     line-height: 1.05;
 
     font-weight: 500;
-
 }
 
-
-.services-intro h2 span {
-
+.services-header h2 span {
     color: var(--green);
-
-    display: block;
-
 }
 
-
-.services-intro p {
+.services-header p {
 
     max-width: 410px;
 
     color: var(--gray);
-
 }
-
 
 .services-grid {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns: repeat(3,1fr);
 
     gap: 1px;
 
     background: var(--line);
 
     border: 1px solid var(--line);
-
 }
 
-
-.service-card {
+.service {
 
     position: relative;
 
@@ -802,45 +650,36 @@ select {
     background: var(--cream);
 
     transition: .3s;
-
 }
 
-
-.service-card:hover {
+.service:hover {
 
     color: white;
 
     background: var(--green);
 
-    transform:
-        translateY(-5px);
-
+    transform: translateY(-5px);
 }
 
-
-.service-card small {
+.service small {
 
     color: var(--gold);
 
     font-family: "Inter";
 
     font-size: 10px;
-
 }
 
-
-.service-card h3 {
+.service h3 {
 
     font-family: "Inter";
 
     font-size: 23px;
 
     margin-top: 55px;
-
 }
 
-
-.service-card p {
+.service p {
 
     max-width: 300px;
 
@@ -851,19 +690,13 @@ select {
     font-size: 12px;
 
     margin-top: 15px;
-
 }
 
-
-.service-card:hover p {
-
-    color:
-        rgba(255,255,255,.65);
-
+.service:hover p {
+    color: rgba(255,255,255,.65);
 }
 
-
-.service-card > span {
+.service-arrow {
 
     position: absolute;
 
@@ -874,13 +707,10 @@ select {
     color: var(--gold);
 
     font-size: 21px;
-
 }
 
 
-/* =========================
-   MARKETS
-========================= */
+/* MARKETS */
 
 .markets {
 
@@ -889,42 +719,32 @@ select {
     color: white;
 
     background:
-
         linear-gradient(
             120deg,
             rgba(3,27,22,.97),
             rgba(8,51,43,.85)
         ),
-
         url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=90");
 
     background-size: cover;
 
     background-position: center;
-
 }
-
 
 .light {
-
     color: white;
-
 }
-
 
 .markets-grid {
 
     display: grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
     gap: 100px;
 
     align-items: center;
-
 }
-
 
 .gold-label {
 
@@ -939,55 +759,43 @@ select {
     letter-spacing: 2px;
 
     margin-bottom: 22px;
-
 }
-
 
 .markets h2 {
 
     font-size:
-        clamp(45px,5vw,72px);
+        clamp(45px, 5vw, 72px);
 
     line-height: 1.05;
 
     font-weight: 500;
-
 }
-
 
 .markets h2 span {
 
     display: block;
 
     color: var(--gold);
-
 }
-
 
 .markets-grid p {
 
+    color: rgba(255,255,255,.65);
+
     max-width: 480px;
-
-    color:
-        rgba(255,255,255,.65);
-
 }
-
 
 .market-list {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(2,1fr);
+    grid-template-columns: repeat(2,1fr);
 
     margin-top: 40px;
 
     border-top:
         1px solid rgba(255,255,255,.15);
-
 }
-
 
 .market-list span {
 
@@ -998,62 +806,45 @@ select {
 
     font-family: "Inter";
 
-    color:
-        rgba(255,255,255,.75);
-
+    color: rgba(255,255,255,.75);
 }
 
 
-/* =========================
-   APPROACH
-========================= */
+/* APPROACH */
 
 .approach {
-
     background: white;
-
 }
-
 
 .approach-intro {
 
     max-width: 900px;
 
     margin-bottom: 65px;
-
 }
-
 
 .approach-intro h2 {
 
     font-size:
-        clamp(42px,5vw,68px);
+        clamp(42px, 5vw, 68px);
 
     line-height: 1.06;
 
     font-weight: 500;
-
 }
-
 
 .approach-intro h2 span {
-
     color: var(--green);
-
 }
-
 
 .approach-grid {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr);
 
     border: 1px solid var(--line);
-
 }
-
 
 .approach-card {
 
@@ -1061,18 +852,12 @@ select {
 
     padding: 35px;
 
-    border-left:
-        1px solid var(--line);
-
+    border-left: 1px solid var(--line);
 }
-
 
 .approach-card:last-child {
-
     border-left: none;
-
 }
-
 
 .approach-card small {
 
@@ -1081,9 +866,7 @@ select {
     font-family: "Inter";
 
     font-size: 10px;
-
 }
-
 
 .approach-card h3 {
 
@@ -1092,9 +875,7 @@ select {
     font-size: 27px;
 
     margin-top: 65px;
-
 }
-
 
 .approach-card p {
 
@@ -1105,98 +886,68 @@ select {
     font-size: 12px;
 
     margin-top: 15px;
-
 }
 
 
-/* =========================
-   PARTNERS
-========================= */
+/* =========================================
+   ADVISORY ECOSYSTEM
+========================================= */
 
-.partners {
+.network {
 
-    padding: 140px 0;
+    padding: 130px 0;
 
     text-align: center;
 
     background: var(--cream);
-
 }
 
+.network h2 {
 
-.partners-container {
-
-    max-width: 1250px;
-
-    margin: auto;
-
-}
-
-
-.partners h2 {
+    font-family: "Inter";
 
     font-size:
-        clamp(48px,6vw,78px);
+        clamp(43px, 5vw, 70px);
 
-    line-height: 1.05;
+    line-height: 1.03;
 
     font-weight: 500;
-
 }
 
-
-.partners h2 span {
-
-    display: block;
-
+.network h2 span {
     color: var(--green);
-
 }
 
+.network-intro {
 
-.partners-intro {
+    max-width: 600px;
 
-    max-width: 650px;
-
-    margin:
-        25px auto 0;
+    margin: 25px auto 0;
 
     color: var(--gray);
 
-    font-size: 16px;
-
+    font-size: 15px;
 }
 
 
-/* PARTNER GRID */
+/* LOGOS */
 
-.partner-logos {
+.network-logos {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 25px;
 
     max-width: 1050px;
 
-    margin:
-        70px auto 35px;
-
+    margin: 65px auto 30px;
 }
 
+.network-logo {
 
-/* PARTNER CARD */
-
-.partner-card {
-
-    height: 210px;
-
-    background: white;
-
-    border:
-        1px solid #ddd9d0;
+    height: 190px;
 
     display: flex;
 
@@ -1204,144 +955,216 @@ select {
 
     justify-content: center;
 
-    padding: 40px;
+    padding: 35px;
 
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        border-color .35s ease;
+    background: white;
 
+    border: 1px solid #dedbd2;
+
+    transition: all .35s ease;
 }
 
+.network-logo:hover {
 
-.partner-card:hover {
+    transform: translateY(-8px);
 
-    transform:
-        translateY(-10px);
-
-    border-color:
-        var(--gold);
+    border-color: var(--gold);
 
     box-shadow:
-        0 25px 55px rgba(0,0,0,.10);
+        0 20px 50px rgba(0,0,0,.09);
+}
+
+
+/* COMPANY MARKS */
+
+.company-mark {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #111;
 
 }
 
 
-/* LOGO IMAGE */
+/* MCKINSEY */
 
-.partner-card img {
+.mckinsey-mark {
+    flex-direction: row;
+    gap: 15px;
+}
 
-    display: block;
+.mckinsey-symbol {
 
-    width: auto;
+    font-family: Georgia, serif;
 
-    max-width: 230px;
+    font-size: 58px;
 
-    max-height: 90px;
+    line-height: .8;
 
-    object-fit: contain;
+    font-weight: 700;
 
+    color: #174c96;
+}
+
+.mckinsey-name {
+
+    text-align: left;
+
+    font-family: Georgia, serif;
+
+    font-size: 19px;
+
+    line-height: 1.05;
+
+    font-weight: 700;
+
+    color: #174c96;
 }
 
 
-.partner-note {
+/* BCG */
 
-    margin-top: 25px;
+.bcg-symbol {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 58px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: -4px;
+
+    color: #0066a6;
+}
+
+.bcg-name {
+
+    margin-top: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    color: #555;
+
+    text-transform: uppercase;
+}
+
+
+/* BAIN */
+
+.bain-symbol {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 62px;
+
+    line-height: .9;
+
+    font-weight: 700;
+
+    letter-spacing: -4px;
+
+    color: #ed1b2f;
+}
+
+.bain-name {
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    color: #222;
+}
+
+.network-disclaimer {
+
+    max-width: 700px;
+
+    margin: 25px auto 0;
 
     color: #999;
 
     font-family: "Inter";
 
-    font-size: 10px;
+    font-size: 9px;
 
-    letter-spacing: .5px;
-
+    line-height: 1.6;
 }
 
 
-/* =========================
-   CONTACT
-========================= */
+/* CONTACT */
 
 .contact {
-
     background: white;
-
 }
-
 
 .contact-grid {
 
     display: grid;
 
-    grid-template-columns:
-        .85fr 1.15fr;
+    grid-template-columns: .85fr 1.15fr;
 
     gap: 100px;
-
 }
 
-
-.contact-copy h2 {
+.contact-text h2 {
 
     font-size:
-        clamp(43px,5vw,68px);
+        clamp(43px, 5vw, 68px);
 
     line-height: 1.05;
 
     font-weight: 500;
-
 }
 
-
-.contact-copy h2 span {
+.contact-text h2 span {
 
     display: block;
 
     color: var(--green);
-
 }
 
-
-.contact-copy p {
+.contact-text p {
 
     max-width: 430px;
 
     color: var(--gray);
 
     margin-top: 25px;
-
 }
-
 
 #contactForm {
 
     padding: 45px;
 
     background: var(--cream);
-
 }
-
 
 .form-row {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(2,1fr);
+    grid-template-columns: repeat(2,1fr);
 
     gap: 20px;
-
 }
-
 
 .field {
-
     margin-bottom: 22px;
-
 }
-
 
 .field label {
 
@@ -1350,9 +1173,7 @@ select {
     font-size: 11px;
 
     margin-bottom: 7px;
-
 }
-
 
 .field input,
 .field select,
@@ -1362,32 +1183,23 @@ select {
 
     padding: 14px;
 
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
     background: white;
 
     outline: none;
-
 }
-
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
 
-    border-color:
-        var(--green);
-
+    border-color: var(--green);
 }
-
 
 .field textarea {
-
     resize: vertical;
-
 }
-
 
 #contactForm button {
 
@@ -1405,102 +1217,81 @@ select {
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
 
+    justify-content: space-between;
 }
-
 
 #contactForm button:hover {
-
-    background: var(--dark-green);
-
+    background: var(--dark);
 }
-
 
 #formMessage {
 
     margin-top: 15px;
 
     font-size: 12px;
-
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer {
 
-    padding:
-        70px 0 25px;
+    padding: 70px 0 25px;
 
     background: #061f1a;
 
     color: white;
-
 }
 
-
-.footer-grid {
+.footer-main {
 
     display: grid;
 
-    grid-template-columns:
-        2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
 
     gap: 80px;
 
     padding-bottom: 70px;
-
 }
 
-
-.footer-brand strong {
+.footer-logo strong {
 
     display: block;
 
     font-size: 48px;
 
     line-height: 1;
-
 }
 
-
-.footer-brand span {
+.footer-logo span {
 
     display: block;
 
-    margin-top: 8px;
+    font-family: "Inter";
 
     color: var(--gold);
-
-    font-family: "Inter";
 
     font-size: 13px;
 
     letter-spacing: 5px;
 
+    margin-top: 8px;
 }
 
-
-.footer-brand p {
+.footer-logo p {
 
     max-width: 340px;
 
-    color:
-        rgba(255,255,255,.45);
+    color: rgba(255,255,255,.45);
 
     font-family: "Inter";
 
     font-size: 11px;
 
     margin-top: 20px;
-
 }
-
 
 .footer-column {
 
@@ -1509,9 +1300,7 @@ footer {
     flex-direction: column;
 
     gap: 11px;
-
 }
-
 
 .footer-column span {
 
@@ -1524,21 +1313,16 @@ footer {
     letter-spacing: 2px;
 
     margin-bottom: 5px;
-
 }
-
 
 .footer-column a {
 
-    color:
-        rgba(255,255,255,.65);
+    color: rgba(255,255,255,.65);
 
     font-family: "Inter";
 
     font-size: 11px;
-
 }
-
 
 .footer-bottom {
 
@@ -1551,278 +1335,157 @@ footer {
 
     justify-content: space-between;
 
-    color:
-        rgba(255,255,255,.3);
+    color: rgba(255,255,255,.3);
 
     font-family: "Inter";
 
     font-size: 9px;
-
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* MOBILE */
 
 @media (max-width: 950px) {
 
-
     .nav-links {
-
         display: none;
-
     }
 
-
-    .nav-cta {
-
+    .nav-button {
         display: none;
-
     }
-
 
     .about-grid,
     .markets-grid,
     .contact-grid {
-
         grid-template-columns: 1fr;
-
         gap: 60px;
-
     }
 
-
-    .services-intro {
-
+    .services-header {
         flex-direction: column;
-
         gap: 30px;
-
     }
-
 
     .services-grid {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns: repeat(2,1fr);
     }
-
 
     .approach-grid {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns: repeat(2,1fr);
     }
-
 
     .approach-card {
-
-        border-bottom:
-            1px solid var(--line);
-
+        border-bottom: 1px solid var(--line);
     }
 
-
-    .partner-logos {
-
+    .network-logos {
         grid-template-columns: 1fr;
-
         max-width: 500px;
-
     }
 
-
-    .footer-grid {
-
-        grid-template-columns:
-            1fr 1fr;
-
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
     }
 
-
-    .footer-brand {
-
-        grid-column:
-            1 / -1;
-
+    .footer-logo {
+        grid-column: 1 / -1;
     }
-
 }
 
 
 @media (max-width: 600px) {
 
-
     .nav-container {
-
         min-height: 76px;
-
     }
-
 
     .logo-ar {
-
         font-size: 27px;
-
     }
-
 
     .logo-en {
-
         font-size: 9px;
-
         letter-spacing: 2px;
-
     }
 
-
-    .hero-content {
-
+    .hero-container {
         padding-top: 130px;
-
     }
 
-
-    .hero-brand {
-
+    .hero-logo {
         flex-direction: column;
-
-        align-items: flex-start;
-
         gap: 12px;
-
+        align-items: flex-start;
     }
 
-
-    .hero-ar {
-
+    .hero-logo-ar {
         font-size: 75px;
-
+        letter-spacing: -2px;
     }
 
-
-    .hero-en {
-
+    .hero-logo-en {
         font-size: 20px;
-
         letter-spacing: 5px;
-
     }
-
 
     .hero h1 {
-
         font-size: 45px;
-
+        letter-spacing: -1px;
     }
 
-
-    .hero-buttons {
-
+    .hero-actions {
         flex-direction: column;
-
     }
 
-
-    .btn {
-
+    .button {
         text-align: center;
-
     }
 
-
-    .hero-meta {
-
+    .hero-bottom {
         flex-wrap: wrap;
-
         gap: 15px;
-
     }
-
 
     .services-grid {
-
         grid-template-columns: 1fr;
-
     }
-
 
     .approach-grid {
-
         grid-template-columns: 1fr;
-
     }
-
 
     .approach-card {
-
         border-left: none;
-
     }
 
-
-    .partner-logos {
-
+    .network-logos {
         grid-template-columns: 1fr;
-
         max-width: 330px;
-
     }
 
-
-    .partner-card {
-
-        height: 160px;
-
+    .network-logo {
+        height: 150px;
     }
-
-
-    .partner-card img {
-
-        max-width: 210px;
-
-        max-height: 70px;
-
-    }
-
 
     .form-row {
-
         grid-template-columns: 1fr;
-
     }
-
 
     #contactForm {
-
         padding: 25px;
-
     }
 
-
-    .footer-grid {
-
+    .footer-main {
         grid-template-columns: 1fr;
-
     }
 
-
-    .footer-brand {
-
+    .footer-logo {
         grid-column: auto;
-
     }
-
 
     .footer-bottom {
-
         flex-direction: column;
-
         gap: 10px;
-
     }
-
 }
