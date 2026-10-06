@@ -1,54 +1,88 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     const languageBtn = document.getElementById("languageBtn");
+
+    if (!languageBtn) {
+        console.error("HASEEF: languageBtn not found");
+        return;
+    }
+
+
+    /* =========================================
+       LANGUAGE
+    ========================================= */
 
     let currentLanguage =
         localStorage.getItem("haseefLanguage") || "ar";
 
 
-    function updateLanguage() {
+    function setLanguage(language) {
 
-        // اتجاه الموقع
-        document.documentElement.lang = currentLanguage;
+        currentLanguage = language;
 
-        document.documentElement.dir =
-            currentLanguage === "ar" ? "rtl" : "ltr";
 
+        // اتجاه الصفحة
+        document.documentElement.setAttribute(
+            "lang",
+            currentLanguage
+        );
+
+        document.documentElement.setAttribute(
+            "dir",
+            currentLanguage === "ar" ? "rtl" : "ltr"
+        );
+
+
+        // كلاس للإنجليزية
         document.body.classList.toggle(
             "en",
             currentLanguage === "en"
         );
 
 
-        // تغيير النصوص
-        document.querySelectorAll(
-            "[data-ar], [data-en]"
-        ).forEach(function (element) {
+        /*
+         * تغيير كل عنصر يحتوي على:
+         *
+         * data-ar="النص العربي"
+         * data-en="English text"
+         */
 
-            const text =
-                element.getAttribute(
-                    "data-" + currentLanguage
-                );
+        const elements =
+            document.querySelectorAll(
+                "[data-ar][data-en]"
+            );
 
-            if (text !== null) {
-                element.textContent = text;
+
+        elements.forEach((element) => {
+
+            const arabic =
+                element.getAttribute("data-ar");
+
+            const english =
+                element.getAttribute("data-en");
+
+
+            if (currentLanguage === "ar") {
+
+                element.textContent = arabic;
+
+            } else {
+
+                element.textContent = english;
+
             }
 
         });
 
 
-        // تغيير زر اللغة
-        if (languageBtn) {
-
-            languageBtn.textContent =
-                currentLanguage === "ar"
-                    ? "EN"
-                    : "AR";
-
-        }
+        // زر اللغة
+        languageBtn.textContent =
+            currentLanguage === "ar"
+                ? "EN"
+                : "AR";
 
 
-        // حفظ اللغة
+        // حفظ الاختيار
         localStorage.setItem(
             "haseefLanguage",
             currentLanguage
@@ -57,32 +91,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // الضغط على زر اللغة
-    if (languageBtn) {
+    /* =========================================
+       LANGUAGE BUTTON
+    ========================================= */
 
-        languageBtn.addEventListener(
-            "click",
-            function () {
+    languageBtn.addEventListener(
+        "click",
+        (event) => {
 
-                currentLanguage =
-                    currentLanguage === "ar"
-                        ? "en"
-                        : "ar";
+            event.preventDefault();
 
-                updateLanguage();
-
-            }
-        );
-
-    }
+            event.stopPropagation();
 
 
-    // =========================
-    // CONTACT FORM
-    // =========================
+            const newLanguage =
+                currentLanguage === "ar"
+                    ? "en"
+                    : "ar";
+
+
+            setLanguage(newLanguage);
+
+        }
+    );
+
+
+    /* =========================================
+       CONTACT FORM
+    ========================================= */
 
     const form =
         document.getElementById("contactForm");
+
 
     const formMessage =
         document.getElementById("formMessage");
@@ -92,15 +132,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         form.addEventListener(
             "submit",
-            function (event) {
+            (event) => {
 
                 event.preventDefault();
 
+
                 const name =
-                    document.getElementById("name")?.value.trim();
+                    document
+                        .getElementById("name")
+                        ?.value
+                        .trim();
+
 
                 const email =
-                    document.getElementById("email")?.value.trim();
+                    document
+                        .getElementById("email")
+                        ?.value
+                        .trim();
 
 
                 if (!name || !email) {
@@ -111,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             currentLanguage === "ar"
                                 ? "يرجى تعبئة الاسم والبريد الإلكتروني."
                                 : "Please enter your name and email.";
+
 
                         formMessage.style.color =
                             "#b42318";
@@ -129,10 +178,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             ? "تم استلام طلبك بنجاح."
                             : "Your request has been received.";
 
+
                     formMessage.style.color =
                         "#087443";
 
                 }
+
 
                 form.reset();
 
@@ -142,9 +193,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =========================
-    // NAVBAR SHADOW
-    // =========================
+    /* =========================================
+       NAVBAR SHADOW
+    ========================================= */
 
     const navbar =
         document.querySelector(".navbar");
@@ -152,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener(
         "scroll",
-        function () {
+        () => {
 
             if (!navbar) return;
 
@@ -173,7 +224,10 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // تشغيل اللغة عند فتح الموقع
-    updateLanguage();
+    /* =========================================
+       START WEBSITE
+    ========================================= */
+
+    setLanguage(currentLanguage);
 
 });
