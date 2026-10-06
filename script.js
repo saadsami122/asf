@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================================
+    /* =========================
        LANGUAGE
-    ========================================= */
+    ========================= */
 
     const languageBtn =
         document.getElementById("languageBtn");
@@ -27,22 +27,20 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        document
-            .querySelectorAll("[data-ar][data-en]")
-            .forEach(function (element) {
+        document.querySelectorAll(
+            "[data-ar], [data-en]"
+        ).forEach(function (element) {
 
-                const arabic =
-                    element.getAttribute("data-ar");
+            const text =
+                element.getAttribute(
+                    "data-" + currentLanguage
+                );
 
-                const english =
-                    element.getAttribute("data-en");
+            if (text !== null) {
+                element.textContent = text;
+            }
 
-                element.innerHTML =
-                    currentLanguage === "ar"
-                        ? arabic
-                        : english;
-
-            });
+        });
 
 
         if (languageBtn) {
@@ -55,87 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* FORM PLACEHOLDERS */
-
-        const placeholders = {
-
-            name: {
-                ar: "اسمك",
-                en: "Your name"
-            },
-
-            company: {
-                ar: "اسم الشركة",
-                en: "Company name"
-            },
-
-            country: {
-                ar: "الدولة",
-                en: "Country"
-            },
-
-            message: {
-                ar: "أخبرنا عن فرصتك أو احتياجك...",
-                en: "Tell us about your opportunity..."
-            }
-
-        };
-
-
-        Object.keys(placeholders).forEach(function (id) {
-
-            const element =
-                document.getElementById(id);
-
-            if (!element) return;
-
-            element.placeholder =
-                placeholders[id][currentLanguage];
-
-        });
-
-
-        /* SELECT */
-
-        document
-            .querySelectorAll("#interest option")
-            .forEach(function (option) {
-
-                const arabic =
-                    option.getAttribute("data-ar");
-
-                const english =
-                    option.getAttribute("data-en");
-
-                if (arabic && english) {
-
-                    option.textContent =
-                        currentLanguage === "ar"
-                            ? arabic
-                            : english;
-
-                }
-
-            });
-
-
         localStorage.setItem(
             "haseefLanguage",
             currentLanguage
         );
 
 
-        /* Update modal if it is open */
-
-        if (
-            serviceModal &&
-            serviceModal.classList.contains("active") &&
-            activeService
-        ) {
-
-            openService(activeService);
-
-        }
+        updateModalLanguage();
 
     }
 
@@ -159,253 +83,205 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
-       SERVICE DATA
-    ========================================= */
+    /* =========================
+       SERVICES DATA
+    ========================= */
 
-    const serviceData = {
+    const services = {
 
         "market-entry": {
 
             number: "01",
 
-            title: {
-                ar: "دخول الأسواق",
-                en: "Market Entry"
+            ar: {
+                title: "دخول الأسواق",
+                description:
+                    "نساعد الشركات على تقييم الأسواق الدولية واختيار المسار الأنسب للدخول والتوسع، من خلال دراسة السوق والمنافسة والعملاء والبيئة التجارية.",
+                points: [
+                    "اختيار الأسواق ذات الأولوية",
+                    "تحليل حجم السوق وجاذبيته",
+                    "تقييم المنافسين والبدائل",
+                    "تحديد نموذج الدخول الأنسب",
+                    "بناء خارطة طريق للتوسع"
+                ]
             },
 
-            description: {
-                ar: "نساعد الشركات على تقييم الأسواق الجديدة وتحديد أفضل طريقة للدخول إليها، من خلال دراسة جاذبية السوق والمنافسة والعملاء والبيئة التجارية.",
-                en: "We help companies evaluate new markets and determine the right way to enter them through a structured assessment of market attractiveness, competition, customers and commercial dynamics."
-            },
-
-            details: {
-                ar: `
-                    <p>تشمل المنهجية:</p>
-                    <ul>
-                        <li>تقييم جاذبية السوق وحجمه وإمكانات النمو.</li>
-                        <li>تحليل المنافسين واللاعبين الرئيسيين.</li>
-                        <li>فهم العملاء والطلب والسلوك الشرائي.</li>
-                        <li>تحديد نموذج الدخول الأنسب.</li>
-                        <li>بناء خارطة طريق عملية للتوسع.</li>
-                    </ul>
-                `,
-
-                en: `
-                    <p>Our approach includes:</p>
-                    <ul>
-                        <li>Market attractiveness, size and growth potential.</li>
-                        <li>Competitive landscape assessment.</li>
-                        <li>Customer demand and purchasing behavior.</li>
-                        <li>Assessment of suitable entry models.</li>
-                        <li>A practical international expansion roadmap.</li>
-                    </ul>
-                `
+            en: {
+                title: "Market Entry",
+                description:
+                    "We help companies assess international markets and define the right path to enter and scale through market, customer, competitive and commercial analysis.",
+                points: [
+                    "Market prioritization",
+                    "Market sizing and attractiveness",
+                    "Competitive landscape analysis",
+                    "Entry model assessment",
+                    "International expansion roadmap"
+                ]
             }
 
         },
 
 
-        "market-intelligence": {
+        "intelligence": {
 
             number: "02",
 
-            title: {
-                ar: "ذكاء الأسواق",
-                en: "Market Intelligence"
+            ar: {
+                title: "ذكاء السوق",
+                description:
+                    "نحوّل البيانات والمعلومات المتفرقة إلى رؤية واضحة تساعد الإدارة والمستثمرين على فهم السوق واتخاذ قرارات أفضل.",
+                points: [
+                    "تحليل السوق والقطاع",
+                    "دراسة المنافسين",
+                    "فهم العملاء واحتياجاتهم",
+                    "تحليل الاتجاهات",
+                    "رصد الفرص والمخاطر"
+                ]
             },
 
-            description: {
-                ar: "نحوّل البيانات والمعلومات المتفرقة إلى فهم واضح للسوق يساعد الإدارة والمستثمرين على اتخاذ قرارات أكثر ثقة.",
-                en: "We transform fragmented market information into clear intelligence that helps executives and investors make more informed decisions."
-            },
-
-            details: {
-                ar: `
-                    <p>يمكن أن تشمل الخدمة:</p>
-                    <ul>
-                        <li>حجم السوق ومعدلات النمو.</li>
-                        <li>تحليل المنافسة واللاعبين الرئيسيين.</li>
-                        <li>تحليل العملاء والشرائح المستهدفة.</li>
-                        <li>دراسة الاتجاهات والتحولات في القطاع.</li>
-                        <li>تحديد الفرص والمخاطر.</li>
-                    </ul>
-                `,
-
-                en: `
-                    <p>This may include:</p>
-                    <ul>
-                        <li>Market sizing and growth rates.</li>
-                        <li>Competitive landscape and key players.</li>
-                        <li>Customer and target segment analysis.</li>
-                        <li>Industry trends and structural shifts.</li>
-                        <li>Identification of opportunities and risks.</li>
-                    </ul>
-                `
+            en: {
+                title: "Market Intelligence",
+                description:
+                    "We turn fragmented information into clear market intelligence that helps executives and investors make better strategic decisions.",
+                points: [
+                    "Market and industry analysis",
+                    "Competitive intelligence",
+                    "Customer and demand insights",
+                    "Trend analysis",
+                    "Opportunity and risk assessment"
+                ]
             }
 
         },
 
 
-        "growth-strategy": {
+        "growth": {
 
             number: "03",
 
-            title: {
-                ar: "استراتيجية النمو",
-                en: "Growth Strategy"
+            ar: {
+                title: "استراتيجية النمو",
+                description:
+                    "نساعد الشركات على تحديد محركات النمو وبناء خطط استراتيجية عملية ترتبط بأهدافها التجارية.",
+                points: [
+                    "تحديد فرص النمو",
+                    "تطوير الاستراتيجية التجارية",
+                    "تحديد الأولويات",
+                    "بناء مبادرات النمو",
+                    "مؤشرات الأداء وخارطة التنفيذ"
+                ]
             },
 
-            description: {
-                ar: "نساعد الشركات على تحديد محركات النمو وبناء استراتيجية واضحة تربط الفرص السوقية بالأولويات التجارية.",
-                en: "We help companies identify growth drivers and build clear strategies that connect market opportunities with commercial priorities."
-            },
-
-            details: {
-                ar: `
-                    <p>نركز على:</p>
-                    <ul>
-                        <li>تحديد محركات النمو الرئيسية.</li>
-                        <li>تحديد الأسواق والشرائح ذات الأولوية.</li>
-                        <li>تقييم فرص المنتجات والخدمات.</li>
-                        <li>بناء أولويات استراتيجية واضحة.</li>
-                        <li>تحويل الاستراتيجية إلى مبادرات قابلة للتنفيذ.</li>
-                    </ul>
-                `,
-
-                en: `
-                    <p>Our focus includes:</p>
-                    <ul>
-                        <li>Identifying key growth drivers.</li>
-                        <li>Prioritizing markets and customer segments.</li>
-                        <li>Evaluating product and service opportunities.</li>
-                        <li>Building clear strategic priorities.</li>
-                        <li>Translating strategy into actionable initiatives.</li>
-                    </ul>
-                `
+            en: {
+                title: "Growth Strategy",
+                description:
+                    "We help businesses identify growth drivers and build practical strategies aligned with their commercial ambitions.",
+                points: [
+                    "Growth opportunity identification",
+                    "Commercial strategy",
+                    "Strategic prioritization",
+                    "Growth initiatives",
+                    "Execution roadmap and KPIs"
+                ]
             }
 
         },
 
 
-        "investment-advisory": {
+        "investment": {
 
             number: "04",
 
-            title: {
-                ar: "الاستشارات الاستثمارية",
-                en: "Investment Advisory"
+            ar: {
+                title: "الاستشارات الاستثمارية",
+                description:
+                    "نقدم منظورًا استراتيجيًا للمستثمرين الراغبين في تقييم أسواق أو فرص جديدة وفهم الإمكانات التجارية.",
+                points: [
+                    "دراسة جاذبية السوق",
+                    "تقييم الفرصة التجارية",
+                    "تحليل المنافسة",
+                    "فهم ديناميكيات القطاع",
+                    "دعم القرار الاستثماري"
+                ]
             },
 
-            description: {
-                ar: "نوفر للمستثمرين رؤى مستقلة تساعدهم على فهم الفرص والأسواق وتقييم الإمكانات التجارية قبل اتخاذ قراراتهم.",
-                en: "We provide investors with independent insights to understand markets, opportunities and commercial potential before making investment decisions."
-            },
-
-            details: {
-                ar: `
-                    <p>يمكن أن تشمل الاستشارات:</p>
-                    <ul>
-                        <li>تقييم الفرص الاستثمارية.</li>
-                        <li>تحليل الأسواق والقطاعات.</li>
-                        <li>دراسة البيئة التنافسية.</li>
-                        <li>تقييم الإمكانات التجارية.</li>
-                        <li>تحديد المخاطر والافتراضات الرئيسية.</li>
-                    </ul>
-                `,
-
-                en: `
-                    <p>Advisory work may include:</p>
-                    <ul>
-                        <li>Investment opportunity assessment.</li>
-                        <li>Market and sector analysis.</li>
-                        <li>Competitive landscape assessment.</li>
-                        <li>Commercial potential evaluation.</li>
-                        <li>Identification of key risks and assumptions.</li>
-                    </ul>
-                `
+            en: {
+                title: "Investment Advisory",
+                description:
+                    "We provide investors with strategic perspectives to evaluate new markets and opportunities and understand their commercial potential.",
+                points: [
+                    "Market attractiveness",
+                    "Commercial opportunity assessment",
+                    "Competitive analysis",
+                    "Industry dynamics",
+                    "Investment decision support"
+                ]
             }
 
         },
 
 
-        "commercial-due-diligence": {
+        "diligence": {
 
             number: "05",
 
-            title: {
-                ar: "العناية الواجبة التجارية",
-                en: "Commercial Due Diligence"
+            ar: {
+                title: "الفحص التجاري",
+                description:
+                    "تحليل مستقل للسوق والعملاء والمنافسين والإمكانات التجارية لمساعدة المستثمرين والشركات على اتخاذ قرارات أكثر وضوحًا.",
+                points: [
+                    "تحليل السوق",
+                    "تقييم الطلب والعملاء",
+                    "تحليل المنافسين",
+                    "اختبار الفرضيات التجارية",
+                    "تحديد المخاطر والفرص"
+                ]
             },
 
-            description: {
-                ar: "تحليل مستقل للسوق والعملاء والمنافسين والإمكانات التجارية لمساعدة المستثمرين والشركات على اتخاذ قرارات مدروسة.",
-                en: "Independent analysis of markets, customers, competitors and commercial potential to support informed investment and strategic decisions."
-            },
-
-            details: {
-                ar: `
-                    <p>نركز على:</p>
-                    <ul>
-                        <li>تحليل السوق والطلب.</li>
-                        <li>فهم العملاء والشرائح.</li>
-                        <li>تحليل المنافسة.</li>
-                        <li>اختبار افتراضات النمو.</li>
-                        <li>تقييم الإمكانات التجارية المستقبلية.</li>
-                    </ul>
-                `,
-
-                en: `
-                    <p>We assess:</p>
-                    <ul>
-                        <li>Market and demand dynamics.</li>
-                        <li>Customer and segment understanding.</li>
-                        <li>Competitive positioning.</li>
-                        <li>Key growth assumptions.</li>
-                        <li>Future commercial potential.</li>
-                    </ul>
-                `
+            en: {
+                title: "Commercial Due Diligence",
+                description:
+                    "Independent analysis of markets, customers, competitors and commercial potential to support confident business and investment decisions.",
+                points: [
+                    "Market assessment",
+                    "Customer and demand analysis",
+                    "Competitive landscape",
+                    "Commercial hypothesis testing",
+                    "Risk and opportunity assessment"
+                ]
             }
 
         },
 
 
-        "international-partnerships": {
+        "partnerships": {
 
             number: "06",
 
-            title: {
-                ar: "الشراكات الدولية",
-                en: "International Partnerships"
+            ar: {
+                title: "الشراكات الدولية",
+                description:
+                    "نساعد الشركات على فهم فرص التعاون الدولي وتطوير مسارات عملية لبناء علاقات وشراكات تجارية.",
+                points: [
+                    "تحديد فرص التعاون",
+                    "تقييم الشركاء المحتملين",
+                    "دراسة التوافق الاستراتيجي",
+                    "تصميم نموذج التعاون",
+                    "دعم تطوير الفرص التجارية"
+                ]
             },
 
-            description: {
-                ar: "ندعم الشركات في استكشاف وتطوير الشراكات التجارية الدولية التي يمكن أن تفتح فرصًا جديدة للنمو والتوسع.",
-                en: "We support companies in identifying and developing international partnerships that can unlock new opportunities for growth and expansion."
-            },
-
-            details: {
-                ar: `
-                    <p>يشمل الدعم:</p>
-                    <ul>
-                        <li>تحديد فرص الشراكة المحتملة.</li>
-                        <li>دراسة ملاءمة الشركاء.</li>
-                        <li>تحليل القيمة التجارية للشراكة.</li>
-                        <li>دعم استراتيجية التواصل والتفاوض.</li>
-                        <li>تطوير نماذج التعاون المناسبة.</li>
-                    </ul>
-                `,
-
-                en: `
-                    <p>Support may include:</p>
-                    <ul>
-                        <li>Identifying potential partnership opportunities.</li>
-                        <li>Partner-fit assessment.</li>
-                        <li>Commercial value analysis.</li>
-                        <li>Engagement and negotiation strategy.</li>
-                        <li>Development of collaboration models.</li>
-                    </ul>
-                `
+            en: {
+                title: "International Partnerships",
+                description:
+                    "We support companies in identifying international partnership opportunities and developing practical paths toward strategic commercial relationships.",
+                points: [
+                    "Partnership opportunity mapping",
+                    "Potential partner assessment",
+                    "Strategic fit analysis",
+                    "Partnership model design",
+                    "Commercial opportunity development"
+                ]
             }
 
         }
@@ -413,18 +289,15 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* =========================================
+    /* =========================
        SERVICE MODAL
-    ========================================= */
+    ========================= */
 
-    const serviceModal =
+    const modal =
         document.getElementById("serviceModal");
 
-    const closeServiceModal =
-        document.getElementById("closeServiceModal");
-
-    const modalNumber =
-        document.getElementById("modalNumber");
+    const modalClose =
+        document.getElementById("modalClose");
 
     const modalTitle =
         document.getElementById("modalTitle");
@@ -432,54 +305,147 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalDescription =
         document.getElementById("modalDescription");
 
-    const modalDetails =
-        document.getElementById("modalDetails");
+    const modalPoints =
+        document.getElementById("modalPoints");
 
-    const modalCTA =
-        document.getElementById("modalCTA");
+    const modalNumber =
+        document.getElementById("modalNumber");
+
+    const serviceCards =
+        document.querySelectorAll(".service");
+
 
     let activeService = null;
 
 
-    function openService(serviceId) {
+    function openService(serviceKey) {
 
-        const data =
-            serviceData[serviceId];
+        const service =
+            services[serviceKey];
 
-        if (!data) return;
+        if (!service) return;
 
-        activeService = serviceId;
+        activeService = serviceKey;
 
+        modal.classList.add("active");
 
-        modalNumber.textContent =
-            data.number;
+        document.body.style.overflow = "hidden";
 
-        modalTitle.textContent =
-            data.title[currentLanguage];
-
-        modalDescription.textContent =
-            data.description[currentLanguage];
-
-        modalDetails.innerHTML =
-            data.details[currentLanguage];
-
-        modalCTA.textContent =
-            currentLanguage === "ar"
-                ? "اطلب استشارة"
-                : "Request Advisory";
-
-
-        serviceModal.classList.add("active");
-
-        document.body.style.overflow =
-            "hidden";
+        renderModal(service);
 
     }
 
 
-    function closeService() {
+    function renderModal(service) {
 
-        serviceModal.classList.remove("active");
+        const language =
+            service[currentLanguage];
+
+        modalNumber.textContent =
+            service.number;
+
+        modalTitle.textContent =
+            language.title;
+
+        modalDescription.textContent =
+            language.description;
+
+        modalPoints.innerHTML = "";
+
+        language.points.forEach(function (point) {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "modal-point";
+
+            item.textContent =
+                "✓ " + point;
+
+            modalPoints.appendChild(item);
+
+        });
+
+        updateModalLanguage();
+
+    }
+
+
+    function updateModalLanguage() {
+
+        if (!activeService) return;
+
+        const service =
+            services[activeService];
+
+        if (!service) return;
+
+        const language =
+            service[currentLanguage];
+
+        modalTitle.textContent =
+            language.title;
+
+        modalDescription.textContent =
+            language.description;
+
+        modalPoints.innerHTML = "";
+
+        language.points.forEach(function (point) {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "modal-point";
+
+            item.textContent =
+                "✓ " + point;
+
+            modalPoints.appendChild(item);
+
+        });
+
+        const modalContact =
+            document.getElementById("modalContact");
+
+        if (modalContact) {
+
+            const text =
+                modalContact.getAttribute(
+                    "data-" + currentLanguage
+                );
+
+            if (text) {
+                modalContact.textContent = text;
+            }
+
+        }
+
+    }
+
+
+    serviceCards.forEach(function (card) {
+
+        card.addEventListener(
+            "click",
+            function () {
+
+                const serviceKey =
+                    card.getAttribute(
+                        "data-service"
+                    );
+
+                openService(serviceKey);
+
+            }
+        );
+
+    });
+
+
+    function closeModal() {
+
+        modal.classList.remove("active");
 
         document.body.style.overflow = "";
 
@@ -488,45 +454,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    document
-        .querySelectorAll(".service-expandable")
-        .forEach(function (service) {
+    if (modalClose) {
 
-            service.addEventListener(
-                "click",
-                function () {
-
-                    const serviceId =
-                        service.getAttribute("data-service");
-
-                    openService(serviceId);
-
-                }
-            );
-
-        });
-
-
-    if (closeServiceModal) {
-
-        closeServiceModal.addEventListener(
+        modalClose.addEventListener(
             "click",
-            closeService
+            closeModal
         );
 
     }
 
 
-    const modalOverlay =
-        document.querySelector(
-            ".service-modal-overlay"
-        );
+    const modalBackdrop =
+        document.querySelector(".modal-backdrop");
 
-    if (modalOverlay) {
+    if (modalBackdrop) {
 
-        modalOverlay.addEventListener(
+        modalBackdrop.addEventListener(
             "click",
-            closeService
+            closeModal
         );
 
     }
@@ -538,20 +483,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (
                 event.key === "Escape" &&
-                serviceModal.classList.contains("active")
+                modal.classList.contains("active")
             ) {
-
-                closeService();
-
+                closeModal();
             }
 
         }
     );
 
 
-    /* =========================================
+    /* =========================
+       MODAL CONTACT
+    ========================= */
+
+    const modalContact =
+        document.getElementById("modalContact");
+
+    if (modalContact) {
+
+        modalContact.addEventListener(
+            "click",
+            function () {
+
+                closeModal();
+
+            }
+        );
+
+    }
+
+
+    /* =========================
        CONTACT FORM
-    ========================================= */
+    ========================= */
 
     const form =
         document.getElementById("contactForm");
@@ -583,26 +547,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (!name || !email) {
 
-                    formMessage.textContent =
-                        currentLanguage === "ar"
-                            ? "يرجى تعبئة الاسم والبريد الإلكتروني."
-                            : "Please enter your name and email.";
+                    if (formMessage) {
 
-                    formMessage.style.color =
-                        "#b42318";
+                        formMessage.textContent =
+                            currentLanguage === "ar"
+                                ? "يرجى تعبئة الاسم والبريد الإلكتروني."
+                                : "Please enter your name and email.";
+
+                        formMessage.style.color =
+                            "#B42318";
+
+                    }
 
                     return;
 
                 }
 
 
-                formMessage.textContent =
-                    currentLanguage === "ar"
-                        ? "تم استلام طلبك بنجاح."
-                        : "Your request has been received.";
+                if (formMessage) {
 
-                formMessage.style.color =
-                    "#087443";
+                    formMessage.textContent =
+                        currentLanguage === "ar"
+                            ? "تم استلام طلبك بنجاح. سنتواصل معك قريبًا."
+                            : "Your request has been received. We will be in touch shortly.";
+
+                    formMessage.style.color =
+                        "#087443";
+
+                }
 
                 form.reset();
 
@@ -612,9 +584,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
-       NAVBAR
-    ========================================= */
+    /* =========================
+       NAVBAR SHADOW
+    ========================= */
 
     const navbar =
         document.querySelector(".navbar");
@@ -629,7 +601,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (window.scrollY > 30) {
 
                 navbar.style.boxShadow =
-                    "0 8px 30px rgba(0,0,0,.06)";
+                    "0 8px 30px rgba(11,36,27,.12)";
 
             } else {
 
@@ -642,9 +614,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =========================================
-       INITIALIZE
-    ========================================= */
+    /* =========================
+       START
+    ========================= */
 
     updateLanguage();
 
