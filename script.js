@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
        LANGUAGE SYSTEM
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateLanguage() {
 
         document.documentElement.lang = currentLanguage;
+
         document.documentElement.dir =
             currentLanguage === "ar" ? "rtl" : "ltr";
 
@@ -23,83 +24,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /*
-         * مهم:
-         * لا نستخدم textContent للعناصر التي بداخلها span / br
-         * لأن ذلك يمسح HTML الداخلي.
-         *
-         * بدلًا من ذلك نستخدم innerHTML فقط عندما يكون
-         * النص يحتوي على <br>.
+         * العناصر التي تستخدم data-ar / data-en
          */
+        document
+            .querySelectorAll("[data-ar][data-en]")
+            .forEach((element) => {
 
-        document.querySelectorAll(
-            "[data-ar][data-en]"
-        ).forEach(function (element) {
+                const value =
+                    element.getAttribute(
+                        `data-${currentLanguage}`
+                    );
 
-            const value =
-                element.getAttribute(
-                    "data-" + currentLanguage
-                );
+                if (value === null) return;
 
-            if (value === null) return;
-
-
-            /*
-             * العناصر التي تحتوي على HTML مثل:
-             * <br>
-             */
-            if (value.includes("<br")) {
-
-                element.innerHTML = value;
-
-            } else {
 
                 /*
-                 * إذا كان العنصر يحتوي على عناصر داخلية
-                 * مثل span، نحافظ عليها.
+                 * إذا كان العنصر OPTION
                  */
-
-                const children =
-                    Array.from(element.children);
-
-                if (children.length > 0) {
-
-                    /*
-                     * نحاول تحديث النص بدون حذف العناصر الداخلية.
-                     *
-                     * للعناوين التي تحتوي span:
-                     * يتم التعامل معها بشكل خاص بالأسفل.
-                     */
-
-                    if (
-                        element.tagName === "H1" ||
-                        element.tagName === "H2"
-                    ) {
-
-                        updateHeadingWithSpan(
-                            element,
-                            value
-                        );
-
-                    } else {
-
-                        element.textContent = value;
-
-                    }
-
-                } else {
+                if (element.tagName === "OPTION") {
 
                     element.textContent = value;
 
+                    return;
                 }
 
-            }
 
-        });
+                /*
+                 * لا نلمس العناوين التي تحتوي
+                 * على .lang-ar / .lang-en
+                 */
+                if (
+                    element.querySelector(".lang-ar") ||
+                    element.querySelector(".lang-en")
+                ) {
+                    return;
+                }
 
 
-        /*
-         * اللغة
-         */
+                element.textContent = value;
+            });
+
 
         if (languageBtn) {
 
@@ -111,176 +75,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /*
-         * تحديث الـ select
-         */
-
         updateSelectLanguage();
-
-
-        /*
-         * تحديث المودال إذا كان مفتوحًا
-         */
 
         updateModalLanguage();
 
-
-        /*
-         * حفظ اللغة
-         */
+        updateFormPlaceholders();
 
         localStorage.setItem(
             "haseefLanguage",
             currentLanguage
         );
-
-    }
-
-
-    /* =====================================================
-       HEADINGS WITH SPAN
-    ===================================================== */
-
-    function updateHeadingWithSpan(
-        element,
-        value
-    ) {
-
-        /*
-         * بعض العناوين في HTML عندها:
-         *
-         * <h2>
-         *   النص
-         *   <span>النص</span>
-         * </h2>
-         *
-         * لذلك لا نمسح الـ span.
-         */
-
-
-        const span =
-            element.querySelector(":scope > span");
-
-        const em =
-            element.querySelector(":scope > em");
-
-
-        /*
-         * إذا كان العنوان لا يحتوي span أو em
-         */
-
-        if (!span && !em) {
-
-            element.textContent = value;
-
-            return;
-
-        }
-
-
-        /*
-         * العناوين التي نحتاج الحفاظ على تصميمها
-         *
-         * نستخدم النص العربي/الإنجليزي الموجود
-         * في HTML بدل تدمير البنية.
-         */
-
-        if (element.closest(".about")) {
-
-            if (currentLanguage === "ar") {
-
-                element.innerHTML =
-                    "التوسع يبدأ <em>بفهم السوق.</em>";
-
-            } else {
-
-                element.innerHTML =
-                    "Expansion starts with <em>understanding the market.</em>";
-
-            }
-
-            return;
-        }
-
-
-        if (element.closest(".services-header")) {
-
-            if (currentLanguage === "ar") {
-
-                element.innerHTML =
-                    "من الفرصة <span>إلى الاستراتيجية.</span>";
-
-            } else {
-
-                element.innerHTML =
-                    "From opportunity <span>to strategy.</span>";
-
-            }
-
-            return;
-        }
-
-
-        if (element.closest(".markets")) {
-
-            if (currentLanguage === "ar") {
-
-                element.innerHTML =
-                    "كل سوق له <span>منطقه الخاص.</span>";
-
-            } else {
-
-                element.innerHTML =
-                    "Every market has <span>its own logic.</span>";
-
-            }
-
-            return;
-        }
-
-
-        if (element.closest(".approach-intro")) {
-
-            if (currentLanguage === "ar") {
-
-                element.innerHTML =
-                    "نفكر بوضوح، <span>نختبر بصرامة، ونتحرك بثقة.</span>";
-
-            } else {
-
-                element.innerHTML =
-                    "Think clearly. <span>Test rigorously. Move confidently.</span>";
-
-            }
-
-            return;
-        }
-
-
-        if (element.closest(".contact-text")) {
-
-            if (currentLanguage === "ar") {
-
-                element.innerHTML =
-                    "لديك سوق جديد <span>في ذهنك؟</span>";
-
-            } else {
-
-                element.innerHTML =
-                    "Thinking about <span>a new market?</span>";
-
-            }
-
-            return;
-        }
-
-
-        /*
-         * إذا لم يكن من الحالات السابقة
-         */
-
-        element.textContent = value;
-
     }
 
 
@@ -290,19 +94,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (languageBtn) {
 
-        languageBtn.addEventListener(
-            "click",
-            function () {
+        languageBtn.addEventListener("click", () => {
 
-                currentLanguage =
-                    currentLanguage === "ar"
-                        ? "en"
-                        : "ar";
+            currentLanguage =
+                currentLanguage === "ar"
+                    ? "en"
+                    : "ar";
 
-                updateLanguage();
+            updateLanguage();
 
-            }
-        );
+        });
 
     }
 
@@ -318,24 +119,72 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!select) return;
 
+        select
+            .querySelectorAll("option[data-ar][data-en]")
+            .forEach((option) => {
 
-        select.querySelectorAll(
-            "option[data-ar][data-en]"
-        ).forEach(function (option) {
+                const value =
+                    option.getAttribute(
+                        `data-${currentLanguage}`
+                    );
 
-            const text =
-                option.getAttribute(
-                    "data-" + currentLanguage
-                );
+                if (value) {
+                    option.textContent = value;
+                }
 
-            if (text) {
+            });
+    }
 
-                option.textContent = text;
 
+    /* =====================================================
+       FORM PLACEHOLDERS
+    ===================================================== */
+
+    function updateFormPlaceholders() {
+
+        const placeholders = {
+
+            name: {
+                ar: "الاسم",
+                en: "Your name"
+            },
+
+            company: {
+                ar: "اسم الشركة",
+                en: "Company name"
+            },
+
+            email: {
+                ar: "name@company.com",
+                en: "name@company.com"
+            },
+
+            country: {
+                ar: "الدولة",
+                en: "Country"
+            },
+
+            message: {
+                ar: "أخبرنا عن الفرصة أو التحدي...",
+                en: "Tell us about your opportunity..."
             }
 
-        });
+        };
 
+
+        Object.entries(placeholders).forEach(
+            ([id, values]) => {
+
+                const element =
+                    document.getElementById(id);
+
+                if (!element) return;
+
+                element.placeholder =
+                    values[currentLanguage];
+
+            }
+        );
     }
 
 
@@ -378,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "International expansion roadmap"
                 ]
             }
-
         },
 
 
@@ -415,7 +263,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Opportunity and risk assessment"
                 ]
             }
-
         },
 
 
@@ -452,7 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Execution roadmap and KPIs"
                 ]
             }
-
         },
 
 
@@ -489,7 +335,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Investment decision support"
                 ]
             }
-
         },
 
 
@@ -526,7 +371,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Risk and opportunity assessment"
                 ]
             }
-
         },
 
 
@@ -563,7 +407,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Commercial opportunity development"
                 ]
             }
-
         }
 
     };
@@ -617,7 +460,6 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.classList.add("active");
 
         document.body.style.overflow = "hidden";
-
     }
 
 
@@ -627,24 +469,18 @@ document.addEventListener("DOMContentLoaded", function () {
             service[currentLanguage];
 
         if (modalNumber) {
-
             modalNumber.textContent =
                 service.number;
-
         }
 
         if (modalTitle) {
-
             modalTitle.textContent =
                 language.title;
-
         }
 
         if (modalDescription) {
-
             modalDescription.textContent =
                 language.description;
-
         }
 
 
@@ -652,23 +488,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             modalPoints.innerHTML = "";
 
-            language.points.forEach(
-                function (point) {
+            language.points.forEach((point) => {
 
-                    const item =
-                        document.createElement("div");
+                const item =
+                    document.createElement("div");
 
-                    item.className =
-                        "modal-point";
+                item.className =
+                    "modal-point";
 
-                    item.textContent =
-                        "✓ " + point;
+                item.textContent =
+                    "✓ " + point;
 
-                    modalPoints.appendChild(item);
+                modalPoints.appendChild(item);
 
-                }
-            );
-
+            });
         }
 
 
@@ -676,18 +509,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const contactText =
                 modalContact.getAttribute(
-                    "data-" + currentLanguage
+                    `data-${currentLanguage}`
                 );
 
             if (contactText) {
-
                 modalContact.textContent =
                     contactText;
-
             }
-
         }
-
     }
 
 
@@ -701,29 +530,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!service) return;
 
         renderModal(service);
-
     }
 
 
-    serviceCards.forEach(
-        function (card) {
+    serviceCards.forEach((card) => {
 
-            card.addEventListener(
-                "click",
-                function () {
+        card.addEventListener("click", () => {
 
-                    const serviceKey =
-                        card.getAttribute(
-                            "data-service"
-                        );
+            const serviceKey =
+                card.getAttribute("data-service");
 
-                    openService(serviceKey);
+            openService(serviceKey);
 
-                }
-            );
+        });
 
-        }
-    );
+    });
 
 
     function closeModal() {
@@ -735,24 +556,19 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.overflow = "";
 
         activeService = null;
-
     }
 
 
     if (modalClose) {
-
         modalClose.addEventListener(
             "click",
             closeModal
         );
-
     }
 
 
     const modalBackdrop =
-        document.querySelector(
-            ".modal-backdrop"
-        );
+        document.querySelector(".modal-backdrop");
 
     if (modalBackdrop) {
 
@@ -760,39 +576,28 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             closeModal
         );
-
     }
 
 
-    document.addEventListener(
-        "keydown",
-        function (event) {
+    document.addEventListener("keydown", (event) => {
 
-            if (
-                event.key === "Escape" &&
-                modal &&
-                modal.classList.contains("active")
-            ) {
-
-                closeModal();
-
-            }
-
+        if (
+            event.key === "Escape" &&
+            modal &&
+            modal.classList.contains("active")
+        ) {
+            closeModal();
         }
-    );
+
+    });
 
 
     if (modalContact) {
 
         modalContact.addEventListener(
             "click",
-            function () {
-
-                closeModal();
-
-            }
+            closeModal
         );
-
     }
 
 
@@ -809,71 +614,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
 
-        form.addEventListener(
-            "submit",
-            function (event) {
+        form.addEventListener("submit", (event) => {
 
-                event.preventDefault();
+            event.preventDefault();
 
+            const name =
+                document
+                    .getElementById("name")
+                    ?.value
+                    .trim();
 
-                const name =
-                    document
-                        .getElementById("name")
-                        ?.value
-                        .trim();
-
-
-                const email =
-                    document
-                        .getElementById("email")
-                        ?.value
-                        .trim();
+            const email =
+                document
+                    .getElementById("email")
+                    ?.value
+                    .trim();
 
 
-                if (!name || !email) {
-
-                    if (formMessage) {
-
-                        formMessage.textContent =
-                            currentLanguage === "ar"
-                                ? "يرجى تعبئة الاسم والبريد الإلكتروني."
-                                : "Please enter your name and email.";
-
-                        formMessage.style.color =
-                            "#B42318";
-
-                    }
-
-                    return;
-
-                }
-
+            if (!name || !email) {
 
                 if (formMessage) {
 
                     formMessage.textContent =
                         currentLanguage === "ar"
-                            ? "تم استلام طلبك بنجاح. سنتواصل معك قريبًا."
-                            : "Your request has been received. We will be in touch shortly.";
+                            ? "يرجى تعبئة الاسم والبريد الإلكتروني."
+                            : "Please enter your name and email.";
 
                     formMessage.style.color =
-                        "#087443";
-
+                        "#B42318";
                 }
 
-
-                form.reset();
-
-
-                /*
-                 * بعد reset نرجع لغة الـ select
-                 */
-
-                updateSelectLanguage();
-
+                return;
             }
-        );
 
+
+            if (formMessage) {
+
+                formMessage.textContent =
+                    currentLanguage === "ar"
+                        ? "تم استلام طلبك بنجاح. سنتواصل معك قريبًا."
+                        : "Your request has been received. We will be in touch shortly.";
+
+                formMessage.style.color =
+                    "#087443";
+            }
+
+
+            form.reset();
+
+            updateSelectLanguage();
+
+        });
     }
 
 
@@ -885,33 +676,30 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".navbar");
 
 
+    function updateNavbar() {
+
+        if (!navbar) return;
+
+        navbar.style.boxShadow =
+            window.scrollY > 30
+                ? "0 8px 30px rgba(11,36,27,.12)"
+                : "none";
+    }
+
+
     window.addEventListener(
         "scroll",
-        function () {
-
-            if (!navbar) return;
-
-
-            if (window.scrollY > 30) {
-
-                navbar.style.boxShadow =
-                    "0 8px 30px rgba(11,36,27,.12)";
-
-            } else {
-
-                navbar.style.boxShadow =
-                    "none";
-
-            }
-
-        }
+        updateNavbar,
+        { passive: true }
     );
 
 
     /* =====================================================
-       START WEBSITE
+       START
     ===================================================== */
 
     updateLanguage();
+
+    updateNavbar();
 
 });
