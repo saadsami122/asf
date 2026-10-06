@@ -2,115 +2,57 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>حصيف | HASEEF — Global Advisory</title>
 
-    <title>حصيف | HASEEF</title>
-
-    <meta
-        name="description"
-        content="حصيف HASEEF — منصة استشارية عالمية للتوسع الدولي ودخول الأسواق والاستراتيجية والنمو."
-    >
+    <meta name="description"
+        content="حصيف HASEEF — منصة استشارية عالمية للتوسع الدولي، دخول الأسواق، الاستراتيجية والاستثمار.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
 
 <header class="navbar">
 
     <div class="container nav-container">
 
         <a href="#home" class="logo">
-
-            <span class="logo-ar">
-                حصيف
-            </span>
-
-            <span class="logo-divider"></span>
-
-            <span class="logo-en">
-                HASEEF
-            </span>
-
+            <span class="logo-ar">حصيف</span>
+            <span class="logo-line"></span>
+            <span class="logo-en">HASEEF</span>
         </a>
-
 
         <nav class="nav-links">
 
-            <a href="#about"
-               data-ar="من نحن"
-               data-en="About">
-                من نحن
-            </a>
+            <a href="#about" data-ar="من نحن" data-en="About">من نحن</a>
 
-            <a href="#services"
-               data-ar="خدماتنا"
-               data-en="Services">
-                خدماتنا
-            </a>
+            <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
 
-            <a href="#markets"
-               data-ar="الأسواق"
-               data-en="Markets">
-                الأسواق
-            </a>
+            <a href="#markets" data-ar="الأسواق" data-en="Markets">الأسواق</a>
 
-            <a href="#approach"
-               data-ar="منهجيتنا"
-               data-en="Approach">
-                منهجيتنا
-            </a>
+            <a href="#approach" data-ar="منهجيتنا" data-en="Approach">منهجيتنا</a>
 
-            <a href="#partners"
-               data-ar="شركاؤنا"
-               data-en="Partners">
-                شركاؤنا
-            </a>
-
-            <a href="#contact"
-               data-ar="تواصل معنا"
-               data-en="Contact">
-                تواصل معنا
-            </a>
+            <a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
 
         </nav>
 
+        <div class="nav-right">
 
-        <div class="nav-actions">
+            <button id="languageBtn">EN</button>
 
-            <button id="languageBtn">
-                EN
-            </button>
-
-            <a
-                href="#contact"
-                class="nav-cta"
-                data-ar="اطلب استشارة"
-                data-en="Request Advisory">
+            <a href="#contact"
+               class="nav-button"
+               data-ar="اطلب استشارة"
+               data-en="Request Advisory">
                 اطلب استشارة
             </a>
 
@@ -121,43 +63,27 @@
 </header>
 
 
-
-<!-- =========================
-     HERO
-========================= -->
-
 <section id="home" class="hero">
 
-    <div class="hero-image"></div>
+    <div class="hero-background"></div>
 
     <div class="hero-overlay"></div>
 
+    <div class="container hero-container">
 
-    <div class="container hero-content">
+        <div class="hero-logo">
 
-        <div class="hero-brand">
+            <div class="hero-logo-ar">حصيف</div>
 
-            <div class="hero-ar">
-                حصيف
-            </div>
-
-            <div class="hero-en">
-                HASEEF
-            </div>
+            <div class="hero-logo-en">HASEEF</div>
 
         </div>
 
-
-        <div class="hero-label">
-
-            GLOBAL STRATEGY
-            <span>•</span>
-            MARKET EXPANSION
-            <span>•</span>
-            GROWTH
-
+        <div class="hero-tag"
+             data-ar="استراتيجية • أسواق عالمية • نمو"
+             data-en="STRATEGY • GLOBAL MARKETS • GROWTH">
+            استراتيجية • أسواق عالمية • نمو
         </div>
-
 
         <h1
             data-ar="نفتح الطريق أمام الشركات نحو أسواق جديدة."
@@ -168,7 +94,6 @@
 
         </h1>
 
-
         <p
             data-ar="حصيف منصة استشارية عالمية تساعد الشركات والمستثمرين على فهم الأسواق، تقييم الفرص، وبناء استراتيجيات توسع دولية أكثر وضوحًا."
             data-en="HASEEF is a global advisory platform helping companies and investors understand markets, evaluate opportunities and build clearer international expansion strategies.">
@@ -177,30 +102,25 @@
 
         </p>
 
+        <div class="hero-actions">
 
-        <div class="hero-buttons">
-
-            <a
-                href="#contact"
-                class="btn btn-primary"
-                data-ar="ابدأ محادثة"
-                data-en="Start a Conversation">
+            <a href="#contact"
+               class="button button-primary"
+               data-ar="ابدأ محادثة"
+               data-en="Start a Conversation">
                 ابدأ محادثة
             </a>
 
-
-            <a
-                href="#services"
-                class="btn btn-secondary"
-                data-ar="استكشف خدماتنا"
-                data-en="Explore Services">
+            <a href="#services"
+               class="button button-outline"
+               data-ar="استكشف خدماتنا"
+               data-en="Explore Services">
                 استكشف خدماتنا
             </a>
 
         </div>
 
-
-        <div class="hero-meta">
+        <div class="hero-bottom">
 
             <span>GLOBAL</span>
             <span>STRATEGY</span>
@@ -214,30 +134,18 @@
 </section>
 
 
-
-<!-- =========================
-     ABOUT
-========================= -->
-
 <section id="about" class="section about">
 
     <div class="container">
 
         <div class="section-label">
-
             <span>01</span>
-
-            <strong>
-                ABOUT HASEEF
-            </strong>
-
+            <strong>ABOUT HASEEF</strong>
         </div>
-
 
         <div class="about-grid">
 
-
-            <div class="about-title">
+            <div>
 
                 <h2
                     data-ar="التوسع يبدأ بفهم السوق."
@@ -250,8 +158,7 @@
 
             </div>
 
-
-            <div class="about-text">
+            <div class="about-copy">
 
                 <p
                     data-ar="عندما تتجه الشركة إلى سوق جديد، فإن القرار لا يتعلق فقط بالموقع. بل يتعلق بفهم العملاء والمنافسين والبيئة التجارية والتنظيمية والفرصة الحقيقية للنمو."
@@ -261,7 +168,6 @@
 
                 </p>
 
-
                 <p
                     data-ar="في حصيف، نعمل مع الشركات والمستثمرين لتحويل المعلومات المعقدة إلى رؤية استراتيجية وقرارات قابلة للتنفيذ."
                     data-en="At HASEEF, we work with companies and investors to turn complex information into strategic clarity and actionable decisions.">
@@ -269,7 +175,6 @@
                     في حصيف، نعمل مع الشركات والمستثمرين لتحويل المعلومات المعقدة إلى رؤية استراتيجية وقرارات قابلة للتنفيذ.
 
                 </p>
-
 
                 <div class="stats">
 
@@ -299,23 +204,15 @@
 </section>
 
 
+<section class="visual-section">
 
-<!-- =========================
-     IMAGE SECTION
-========================= -->
+    <div class="visual-image"></div>
 
-<section class="image-section">
+    <div class="visual-overlay"></div>
 
-    <div class="image-section-bg"></div>
+    <div class="container visual-content">
 
-    <div class="image-section-overlay"></div>
-
-
-    <div class="container image-section-content">
-
-        <span>
-            BEYOND BORDERS
-        </span>
+        <span>BEYOND BORDERS</span>
 
         <h2>
             Think beyond.<br>
@@ -327,28 +224,16 @@
 </section>
 
 
-
-<!-- =========================
-     SERVICES
-========================= -->
-
 <section id="services" class="section services">
 
     <div class="container">
 
-
         <div class="section-label">
-
             <span>02</span>
-
-            <strong>
-                WHAT WE DO
-            </strong>
-
+            <strong>WHAT WE DO</strong>
         </div>
 
-
-        <div class="services-intro">
+        <div class="services-header">
 
             <h2
                 data-ar="من الفرصة إلى الاستراتيجية."
@@ -358,7 +243,6 @@
                 <span>إلى الاستراتيجية.</span>
 
             </h2>
-
 
             <p
                 data-ar="خدمات استشارية مصممة للشركات والمستثمرين الذين يفكرون عالميًا."
@@ -373,106 +257,46 @@
 
         <div class="services-grid">
 
-
-            <article class="service-card">
-
+            <article class="service">
                 <small>01</small>
-
-                <h3>
-                    Market Entry
-                </h3>
-
-                <p>
-                    Market selection, entry strategy and commercial planning for international expansion.
-                </p>
-
-                <span>↗</span>
-
+                <h3>Market Entry</h3>
+                <p>Market selection, entry strategy and commercial planning for international expansion.</p>
+                <span class="service-arrow">↗</span>
             </article>
 
-
-            <article class="service-card">
-
+            <article class="service">
                 <small>02</small>
-
-                <h3>
-                    Market Intelligence
-                </h3>
-
-                <p>
-                    Market sizing, competitive analysis, customer insights and industry research.
-                </p>
-
-                <span>↗</span>
-
+                <h3>Market Intelligence</h3>
+                <p>Market sizing, competitive analysis, customer insights and industry research.</p>
+                <span class="service-arrow">↗</span>
             </article>
 
-
-            <article class="service-card">
-
+            <article class="service">
                 <small>03</small>
-
-                <h3>
-                    Growth Strategy
-                </h3>
-
-                <p>
-                    Strategic growth plans built around market opportunities and commercial priorities.
-                </p>
-
-                <span>↗</span>
-
+                <h3>Growth Strategy</h3>
+                <p>Strategic growth plans built around market opportunities and commercial priorities.</p>
+                <span class="service-arrow">↗</span>
             </article>
 
-
-            <article class="service-card">
-
+            <article class="service">
                 <small>04</small>
-
-                <h3>
-                    Investment Advisory
-                </h3>
-
-                <p>
-                    Opportunity assessment and strategic insight for investors evaluating new markets.
-                </p>
-
-                <span>↗</span>
-
+                <h3>Investment Advisory</h3>
+                <p>Opportunity assessment and strategic insight for investors evaluating new markets.</p>
+                <span class="service-arrow">↗</span>
             </article>
 
-
-            <article class="service-card">
-
+            <article class="service">
                 <small>05</small>
-
-                <h3>
-                    Commercial Due Diligence
-                </h3>
-
-                <p>
-                    Independent analysis of markets, competitors, customers and commercial potential.
-                </p>
-
-                <span>↗</span>
-
+                <h3>Commercial Due Diligence</h3>
+                <p>Independent analysis of markets, competitors, customers and commercial potential.</p>
+                <span class="service-arrow">↗</span>
             </article>
 
-
-            <article class="service-card">
-
+            <article class="service">
                 <small>06</small>
-
-                <h3>
-                    International Partnerships
-                </h3>
-
-                <p>
-                    Strategic support for identifying and developing international commercial opportunities.
-                </p>
-
-                <span>↗</span>
-
+                <h3>International Partnerships</h3>
+                <p>Strategic support for identifying and developing international commercial opportunities.</p>
+                <span class="service-arrow">↗</span>
             </article>
 
         </div>
@@ -482,36 +306,20 @@
 </section>
 
 
-
-<!-- =========================
-     GLOBAL MARKETS
-========================= -->
-
 <section id="markets" class="markets">
 
     <div class="container">
 
-
         <div class="section-label light">
-
             <span>03</span>
-
-            <strong>
-                GLOBAL MARKETS
-            </strong>
-
+            <strong>GLOBAL MARKETS</strong>
         </div>
-
 
         <div class="markets-grid">
 
-
             <div>
 
-                <span class="gold-label">
-                    GLOBAL PERSPECTIVE
-                </span>
-
+                <span class="gold-label">GLOBAL PERSPECTIVE</span>
 
                 <h2
                     data-ar="كل سوق له منطقه الخاص."
@@ -524,7 +332,6 @@
 
             </div>
 
-
             <div>
 
                 <p
@@ -535,19 +342,13 @@
 
                 </p>
 
-
                 <div class="market-list">
 
                     <span>Europe</span>
-
                     <span>Middle East</span>
-
                     <span>Asia</span>
-
                     <span>North America</span>
-
                     <span>Africa</span>
-
                     <span>Oceania</span>
 
                 </div>
@@ -561,26 +362,14 @@
 </section>
 
 
-
-<!-- =========================
-     APPROACH
-========================= -->
-
 <section id="approach" class="section approach">
 
     <div class="container">
 
-
         <div class="section-label">
-
             <span>04</span>
-
-            <strong>
-                OUR APPROACH
-            </strong>
-
+            <strong>OUR APPROACH</strong>
         </div>
-
 
         <div class="approach-intro">
 
@@ -595,67 +384,30 @@
 
         </div>
 
-
         <div class="approach-grid">
 
-
             <div class="approach-card">
-
                 <small>01</small>
-
-                <h3>
-                    Understand
-                </h3>
-
-                <p>
-                    We understand the business, ambition, market and strategic question.
-                </p>
-
+                <h3>Understand</h3>
+                <p>We understand the business, ambition, market and strategic question.</p>
             </div>
 
-
             <div class="approach-card">
-
                 <small>02</small>
-
-                <h3>
-                    Challenge
-                </h3>
-
-                <p>
-                    We challenge assumptions and identify risks before they become decisions.
-                </p>
-
+                <h3>Challenge</h3>
+                <p>We challenge assumptions and identify risks before they become decisions.</p>
             </div>
 
-
             <div class="approach-card">
-
                 <small>03</small>
-
-                <h3>
-                    Define
-                </h3>
-
-                <p>
-                    We translate research and insight into a clear strategic direction.
-                </p>
-
+                <h3>Define</h3>
+                <p>We translate research and insight into a clear strategic direction.</p>
             </div>
 
-
             <div class="approach-card">
-
                 <small>04</small>
-
-                <h3>
-                    Move
-                </h3>
-
-                <p>
-                    We focus on practical actions that turn strategy into progress.
-                </p>
-
+                <h3>Move</h3>
+                <p>We focus on practical actions that turn strategy into progress.</p>
             </div>
 
         </div>
@@ -665,86 +417,94 @@
 </section>
 
 
-
 <!-- =========================
-     PARTNERS
+     ADVISORY ECOSYSTEM
 ========================= -->
 
-<section id="partners" class="partners">
+<section class="network">
 
-    <div class="container partners-container">
-
+    <div class="container network-inner">
 
         <span class="gold-label">
-            STRATEGIC PARTNERS
+            SELECTED ADVISORY ECOSYSTEM
         </span>
 
-
         <h2
-            data-ar="شركاؤنا الاستراتيجيون."
-            data-en="Our strategic partners.">
+            data-ar="منظور عالمي."
+            data-en="A global perspective.">
 
-            شركاؤنا
-            <span>الاستراتيجيون.</span>
-
+            منظور عالمي.
         </h2>
 
+        <p class="network-intro"
+           data-ar="نستلهم من أفضل الممارسات العالمية في الاستراتيجية ودخول الأسواق والنمو."
+           data-en="We draw inspiration from leading global practices in strategy, market entry and growth.">
 
-        <p
-            class="partners-intro"
-            data-ar="نعتز بشراكاتنا الاستراتيجية مع مؤسسات استشارية عالمية لدعم عملائنا في قرارات التوسع والنمو والأسواق الدولية."
-            data-en="We are proud to work with leading global advisory institutions to support our clients across expansion, growth and international markets.">
-
-            نعتز بشراكاتنا الاستراتيجية مع مؤسسات استشارية عالمية لدعم عملائنا في قرارات التوسع والنمو والأسواق الدولية.
+            نستلهم من أفضل الممارسات العالمية في الاستراتيجية ودخول الأسواق والنمو.
 
         </p>
 
 
-        <div class="partner-logos">
+        <div class="network-logos">
 
 
             <!-- MCKINSEY -->
 
-            <div class="partner-card">
+            <div class="network-logo">
 
-                <img
-                    src="images/mckinsey.svg"
-                    alt="McKinsey & Company"
-                >
+                <div class="company-mark mckinsey-mark">
+
+                    <span class="mckinsey-symbol">M</span>
+
+                    <span class="mckinsey-name">
+                        McKinsey<br>
+                        &amp; Company
+                    </span>
+
+                </div>
 
             </div>
 
 
             <!-- BCG -->
 
-            <div class="partner-card">
+            <div class="network-logo">
 
-                <img
-                    src="images/bcg.svg"
-                    alt="Boston Consulting Group"
-                >
+                <div class="company-mark bcg-mark">
+
+                    <span class="bcg-symbol">BCG</span>
+
+                    <span class="bcg-name">
+                        Boston Consulting Group
+                    </span>
+
+                </div>
 
             </div>
 
 
             <!-- BAIN -->
 
-            <div class="partner-card">
+            <div class="network-logo">
 
-                <img
-                    src="images/bain.svg"
-                    alt="Bain & Company"
-                >
+                <div class="company-mark bain-mark">
+
+                    <span class="bain-symbol">Bain</span>
+
+                    <span class="bain-name">
+                        &amp; Company
+                    </span>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <p class="partner-note">
-
-            Strategic partners of HASEEF.
-
+        <p class="network-disclaimer">
+            Logos and names are displayed for reference and illustrative purposes only.
+            They do not imply a formal partnership, endorsement or affiliation unless otherwise stated.
         </p>
 
     </div>
@@ -752,22 +512,13 @@
 </section>
 
 
-
-<!-- =========================
-     CONTACT
-========================= -->
-
 <section id="contact" class="section contact">
 
     <div class="container contact-grid">
 
+        <div class="contact-text">
 
-        <div class="contact-copy">
-
-            <span class="gold-label">
-                START A CONVERSATION
-            </span>
-
+            <span class="gold-label">START A CONVERSATION</span>
 
             <h2
                 data-ar="لديك سوق جديد في ذهنك؟"
@@ -777,7 +528,6 @@
                 <span>في ذهنك؟</span>
 
             </h2>
-
 
             <p
                 data-ar="أخبرنا عن فكرتك أو احتياجك وسيتواصل معك فريق حصيف."
@@ -792,9 +542,7 @@
 
         <form id="contactForm">
 
-
             <div class="form-row">
-
 
                 <div class="field">
 
@@ -803,15 +551,13 @@
                     </label>
 
                     <input
-                        type="text"
                         id="name"
                         name="name"
+                        type="text"
                         placeholder="Your name"
-                        required
-                    >
+                        required>
 
                 </div>
-
 
                 <div class="field">
 
@@ -820,11 +566,10 @@
                     </label>
 
                     <input
-                        type="text"
                         id="company"
                         name="company"
-                        placeholder="Company name"
-                    >
+                        type="text"
+                        placeholder="Company name">
 
                 </div>
 
@@ -833,7 +578,6 @@
 
             <div class="form-row">
 
-
                 <div class="field">
 
                     <label for="email">
@@ -841,15 +585,13 @@
                     </label>
 
                     <input
-                        type="email"
                         id="email"
                         name="email"
+                        type="email"
                         placeholder="name@company.com"
-                        required
-                    >
+                        required>
 
                 </div>
-
 
                 <div class="field">
 
@@ -858,11 +600,10 @@
                     </label>
 
                     <input
-                        type="text"
                         id="country"
                         name="country"
-                        placeholder="Country"
-                    >
+                        type="text"
+                        placeholder="Country">
 
                 </div>
 
@@ -877,33 +618,14 @@
 
                 <select id="interest" name="interest">
 
-                    <option value="">
-                        Select an area
-                    </option>
+                    <option value="">Select an area</option>
 
-                    <option>
-                        Market Entry
-                    </option>
-
-                    <option>
-                        Market Intelligence
-                    </option>
-
-                    <option>
-                        Growth Strategy
-                    </option>
-
-                    <option>
-                        Investment Advisory
-                    </option>
-
-                    <option>
-                        Commercial Due Diligence
-                    </option>
-
-                    <option>
-                        International Partnerships
-                    </option>
+                    <option>Market Entry</option>
+                    <option>Market Intelligence</option>
+                    <option>Growth Strategy</option>
+                    <option>Investment Advisory</option>
+                    <option>Commercial Due Diligence</option>
+                    <option>International Partnerships</option>
 
                 </select>
 
@@ -920,8 +642,7 @@
                     id="message"
                     name="message"
                     rows="6"
-                    placeholder="Tell us about your opportunity..."
-                ></textarea>
+                    placeholder="Tell us about your opportunity..."></textarea>
 
             </div>
 
@@ -938,9 +659,7 @@
 
             </button>
 
-
             <div id="formMessage"></div>
-
 
         </form>
 
@@ -949,25 +668,15 @@
 </section>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
-    <div class="container footer-grid">
+    <div class="container footer-main">
 
+        <div class="footer-logo">
 
-        <div class="footer-brand">
+            <strong>حصيف</strong>
 
-            <strong>
-                حصيف
-            </strong>
-
-            <span>
-                HASEEF
-            </span>
+            <span>HASEEF</span>
 
             <p>
                 Global strategy and advisory for ambitious companies and investors.
@@ -978,38 +687,21 @@
 
         <div class="footer-column">
 
-            <span>
-                EXPLORE
-            </span>
+            <span>EXPLORE</span>
 
-            <a href="#about">
-                About
-            </a>
-
-            <a href="#services">
-                Services
-            </a>
-
-            <a href="#markets">
-                Markets
-            </a>
-
-            <a href="#approach">
-                Approach
-            </a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#markets">Markets</a>
+            <a href="#approach">Approach</a>
 
         </div>
 
 
         <div class="footer-column">
 
-            <span>
-                CONTACT
-            </span>
+            <span>CONTACT</span>
 
-            <a href="#contact">
-                Request Advisory
-            </a>
+            <a href="#contact">Request Advisory</a>
 
         </div>
 
@@ -1018,22 +710,16 @@
 
     <div class="container footer-bottom">
 
-        <span>
-            © 2026 HASEEF Advisory
-        </span>
+        <span>© 2026 HASEEF Advisory</span>
 
-        <span>
-            Global Advisory
-        </span>
+        <span>Global Advisory</span>
 
     </div>
 
 </footer>
 
 
-
 <script src="script.js"></script>
 
 </body>
-
 </html>
