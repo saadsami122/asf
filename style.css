@@ -888,36 +888,43 @@ body.en .lang-en {
 }
 
 
-/* CONFIDENTIALITY */
+/* =====================================================
+   CONFIDENTIALITY
+===================================================== */
 
 .confidentiality {
-    padding: 80px 0;
+    padding: 58px 0;
     background: var(--green);
     color: white;
 }
 
 .confidentiality-inner {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 40px;
+    grid-template-columns: 65px 1fr;
+    gap: 28px;
     align-items: start;
 }
 
 .privacy-icon {
-    font-size: 45px;
+    font-size: 28px;
+    line-height: 1.2;
+    opacity: .9;
 }
 
 .confidentiality h2 {
-    margin-top: 15px;
-    font-size: 42px;
+    margin-top: 0;
+    font-size: 25px;
+    line-height: 1.35;
     font-weight: 500;
+    letter-spacing: -.2px;
 }
 
 .confidentiality p {
-    max-width: 900px;
-    margin-top: 15px;
-    color: rgba(255,255,255,.7);
-    line-height: 2;
+    max-width: 780px;
+    margin-top: 8px;
+    color: rgba(255,255,255,.55);
+    font-size: 13px;
+    line-height: 1.8;
 }
 
 
@@ -1057,50 +1064,70 @@ body.en .field select {
 }
 
 
-/* PRIVACY */
+/* =====================================================
+   PRIVACY POLICY
+   ===================================================== */
 
 .privacy-policy {
-    padding: 120px 0;
-    background: var(--cream);
+    padding: 75px 0;
+    background: #f8f6ef;
 }
 
 .privacy-grid {
     display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    gap: 100px;
+    grid-template-columns: .65fr 1.35fr;
+    gap: 75px;
+    align-items: start;
 }
 
+/* العنوان أصبح أصغر وأهدأ */
+
 .privacy-grid > div > h2 {
-    font-size: clamp(40px,5vw,60px);
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.25;
     font-weight: 500;
+    letter-spacing: -.3px;
 }
 
 .privacy-lead {
-    margin-top: 20px;
-    color: var(--gray);
-    font-size: 17px;
-    line-height: 2;
+    max-width: 390px;
+    margin-top: 14px;
+    color: #858d87;
+    font-size: 13px;
+    line-height: 1.85;
 }
+
+/* محتوى السياسة */
 
 .privacy-content {
     display: grid;
     gap: 0;
+    max-width: 760px;
 }
 
 .privacy-item {
-    padding: 28px 0;
-    border-top: 1px solid var(--border);
+    padding: 20px 0;
+    border-top: 1px solid rgba(11,36,27,.09);
+}
+
+.privacy-item:first-child {
+    padding-top: 0;
+    border-top: 0;
 }
 
 .privacy-item h3 {
-    font-size: 21px;
+    font-size: 15px;
+    line-height: 1.5;
     font-weight: 600;
+    color: #26362e;
 }
 
 .privacy-item p {
-    margin-top: 10px;
-    color: var(--gray);
-    line-height: 2;
+    max-width: 700px;
+    margin-top: 6px;
+    color: #7b847e;
+    font-size: 12.5px;
+    line-height: 1.9;
 }
 
 
@@ -1409,13 +1436,26 @@ body.en .footer-bottom {
         min-height: 170px;
     }
 
+    .confidentiality {
+        padding: 45px 0;
+    }
+
     .confidentiality-inner {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 14px;
+    }
+
+    .privacy-icon {
+        font-size: 25px;
     }
 
     .confidentiality h2 {
-        font-size: 34px;
+        font-size: 23px;
+    }
+
+    .confidentiality p {
+        font-size: 12px;
+        line-height: 1.8;
     }
 
     .form-row {
@@ -1423,7 +1463,33 @@ body.en .footer-bottom {
     }
 
     .privacy-policy {
-        padding: 85px 0;
+        padding: 65px 0;
+    }
+
+    .privacy-grid {
+        gap: 35px;
+    }
+
+    .privacy-grid > div > h2 {
+        font-size: 32px;
+    }
+
+    .privacy-lead {
+        max-width: 100%;
+        font-size: 12.5px;
+    }
+
+    .privacy-item {
+        padding: 18px 0;
+    }
+
+    .privacy-item h3 {
+        font-size: 14px;
+    }
+
+    .privacy-item p {
+        font-size: 12px;
+        line-height: 1.85;
     }
 
     .footer-main {
@@ -1471,5 +1537,21 @@ body.en .footer-bottom {
 
     .modal-box h2 {
         font-size: 34px;
+    }
+
+    .privacy-policy {
+        padding: 55px 0;
+    }
+
+    .privacy-grid > div > h2 {
+        font-size: 29px;
+    }
+
+    .privacy-item h3 {
+        font-size: 13.5px;
+    }
+
+    .privacy-item p {
+        font-size: 11.5px;
     }
 }
