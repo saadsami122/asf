@@ -1555,3 +1555,7 @@ body.en .footer-bottom {
         font-size: 11.5px;
     }
 }
+/* إخفاء عبارة التنويه أسفل شعارات الشركات */
+.network-disclaimer {
+    display: none !important;
+}
