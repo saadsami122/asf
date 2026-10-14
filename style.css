@@ -1725,25 +1725,28 @@ body.en .modal-box h2 {
     }
 }
 
-/* ===== Language Display Fix ===== */
 
-/* Hide both language versions by default */
+/* =========================================
+   FINAL LANGUAGE VISIBILITY FIX
+========================================= */
+
+/* إخفاء نسختَي اللغة افتراضيًا */
 .lang-ar,
 .lang-en {
     display: none;
 }
 
-/* Show Arabic by default */
-body:not(.en) .lang-ar {
+/* إظهار العربية عند اختيار العربية */
+html[lang="ar"] .lang-ar {
     display: inline;
 }
 
-/* Show English when English is selected */
-body.en .lang-en {
+/* إظهار الإنجليزية عند اختيار الإنجليزية */
+html[lang="en"] .lang-en {
     display: inline;
 }
 
-/* Preserve line breaks in headings */
+/* إبقاء الأسطر الداخلية منفصلة داخل العناوين */
 h1 .lang-ar > span,
 h1 .lang-en > span,
 h2 .lang-ar > span,
@@ -1751,4 +1754,10 @@ h2 .lang-en > span,
 h3 .lang-ar > span,
 h3 .lang-en > span {
     display: block;
+}
+
+/* التأكد من إخفاء اللغة الأخرى حتى مع قواعد العرض السابقة */
+html[lang="ar"] .lang-en,
+html[lang="en"] .lang-ar {
+    display: none !important;
 }
