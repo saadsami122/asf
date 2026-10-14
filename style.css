@@ -1724,3 +1724,31 @@ body.en .modal-box h2 {
         font-size: 11.5px;
     }
 }
+
+/* ===== Language Display Fix ===== */
+
+/* Hide both language versions by default */
+.lang-ar,
+.lang-en {
+    display: none;
+}
+
+/* Show Arabic by default */
+body:not(.en) .lang-ar {
+    display: inline;
+}
+
+/* Show English when English is selected */
+body.en .lang-en {
+    display: inline;
+}
+
+/* Preserve line breaks in headings */
+h1 .lang-ar > span,
+h1 .lang-en > span,
+h2 .lang-ar > span,
+h2 .lang-en > span,
+h3 .lang-ar > span,
+h3 .lang-en > span {
+    display: block;
+}
