@@ -1255,7 +1255,7 @@ footer {
 
 .footer-main {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 70px;
     padding-bottom: 70px;
 }
